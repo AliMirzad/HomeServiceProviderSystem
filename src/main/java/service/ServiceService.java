@@ -8,31 +8,41 @@ import org.hibernate.SessionFactory;
 import repository.ServiceRepository;
 import service.baseService.CRUDService;
 
+import java.util.List;
+
 public class ServiceService extends CRUDService<Service> {
     private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
     private final ServiceRepository serviceRepository = new ServiceRepository();
 
     @Override
     public Service save(Service service) {
-        try (var session = sessionFactory.getCurrentSession()){
+        try (var session = sessionFactory.getCurrentSession()) {
             var transaction = session.getTransaction();
             try {
-                if (service.getBasePrice() == null || service.getBasePrice() == 0 || service.getBasePrice() <= 100) {
+                transaction.begin();
+                if (service.getModel().equals(ServiceModel.sub) && service.getBasePrice() == null || service.getModel().equals(ServiceModel.sub) && service.getBasePrice() == 0 || service.getModel().equals(ServiceModel.sub) && service.getBasePrice() <= 100) {
                     throw new LogicException("you must have price over 100 coin");
                 }
-                if (service.getName().equals(serviceRepository.findById(service.getId()).getName())) {
-                    throw new LogicException("we can't have same name for services");
+                List<Service> services = serviceRepository.findAll();
+                for (Service s :
+                        services) {
+                    if (service.getName().equals(s.getName())) {
+                        throw new LogicException("we can't have same name for services");
+                    }
                 }
                 if (service.getModel().equals(ServiceModel.sub)) {
                     if (serviceRepository.findById(service.getParentService().getId()) == null) {
                         throw new LogicException("every sub service must have a created main service");
                     }
                 }
+                serviceRepository.save(service);
+                transaction.commit();
+                return service;
             } catch (Exception e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
                 transaction.rollback();
+                return null;
             }
         }
-        return super.save(service);
     }
 }

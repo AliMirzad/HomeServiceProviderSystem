@@ -1,9 +1,6 @@
 package entity.baseEntity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @MappedSuperclass
 public class User {
     private String firstName;
@@ -20,5 +18,5 @@ public class User {
     private String nationalCode;
     private String password;
     private LocalDateTime registerTime;
-    private String profileImage;
+    private byte[] profileImage;
 }
