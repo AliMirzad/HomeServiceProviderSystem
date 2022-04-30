@@ -1,9 +1,6 @@
 package Connection;
 
-import entity.AdminUser;
-import entity.CustomerUser;
-import entity.ExpertUser;
-import entity.Service;
+import entity.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -26,6 +23,8 @@ public class SessionFactorySingleton {
                     .addAnnotatedClass(CustomerUser.class)
                     .addAnnotatedClass(ExpertUser.class)
                     .addAnnotatedClass(Service.class)
+                    .addAnnotatedClass(Order.class)
+                    .addAnnotatedClass(Offer.class)
                     .buildMetadata()
                     .buildSessionFactory();
 

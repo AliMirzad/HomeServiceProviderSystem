@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Orders {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -27,9 +27,11 @@ public class Orders {
     private OrderStatus status;
     @ManyToOne
     private Service service;
+    @OneToMany
+    private Set<Offer> offers;
 
     @Builder
-    public Orders(Integer id, Double offerPrice, String description, LocalDateTime registrationTime, LocalDateTime serviceTime, String address, OrderStatus status, Service service) {
+    public Order(Integer id, Double offerPrice, String description, LocalDateTime registrationTime, LocalDateTime serviceTime, String address, OrderStatus status, Service service) {
         this.id = id;
         this.offerPrice = offerPrice;
         this.description = description;
