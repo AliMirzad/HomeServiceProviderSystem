@@ -20,12 +20,18 @@ public class ExpertUser extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Enumerated(EnumType.STRING)
     private ExpertUserStatus status;
     private Double point;
     @OneToMany
     private Set<Offer> offers;
     @OneToOne
     private Wallet wallet;
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "expert_service"
+    )
+    private Set<Service> services;
 
     @Builder
     public ExpertUser(String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Integer id, ExpertUserStatus status, Double point, Set<Offer> offers) {
@@ -34,5 +40,10 @@ public class ExpertUser extends User {
         this.status = status;
         this.point = point;
         this.offers = offers;
+    }
+
+    @Override
+    public String toString() {
+        return "Expert{" + "id=" + id + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + " ,service="+ getServices() + '}';
     }
 }

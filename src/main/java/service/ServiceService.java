@@ -20,7 +20,7 @@ public class ServiceService extends CRUDService<Service> {
             var transaction = session.getTransaction();
             try {
                 transaction.begin();
-                if (service.getModel().equals(ServiceModel.sub) && service.getBasePrice() == null || service.getModel().equals(ServiceModel.sub) && service.getBasePrice() == 0 || service.getModel().equals(ServiceModel.sub) && service.getBasePrice() <= 100) {
+                if (service.getModel().equals(ServiceModel.sub) & service.getBasePrice() == null || service.getModel().equals(ServiceModel.sub) & service.getBasePrice() <= 100) {
                     throw new LogicException("you must have price over 100 coin");
                 }
                 List<Service> services = serviceRepository.findAll();
@@ -41,6 +41,18 @@ public class ServiceService extends CRUDService<Service> {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 transaction.rollback();
+                return null;
+            }
+        }
+    }
+    public Service findById(Integer id) {
+        try (var session = sessionFactory.getCurrentSession()) {
+            var transaction = session.getTransaction();
+            try {
+                transaction.begin();
+                return serviceRepository.findById(id);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
                 return null;
             }
         }

@@ -24,4 +24,9 @@ public class AdminUser extends User {
         super(firstName, lastName, email, nationalCode, password, registerTime, profileImage);
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" + "id=" + id + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + '}';
+    }
 }

@@ -19,6 +19,7 @@ public class CustomerUser extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Enumerated(EnumType.STRING)
     private CustomerUserStatus status;
     @OneToOne
     private Wallet wallet;
@@ -28,5 +29,10 @@ public class CustomerUser extends User {
         super(firstName, lastName, email, nationalCode, password, registerTime, profileImage);
         this.id = id;
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + '}';
     }
 }

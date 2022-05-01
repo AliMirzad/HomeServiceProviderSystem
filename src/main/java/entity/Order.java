@@ -25,6 +25,7 @@ public class Order {
     private LocalDateTime serviceTime;
     @Column(unique = true)
     private String address;
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
     @ManyToOne
     private Service service;

@@ -16,20 +16,26 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-    private Integer name;
+    private String name;
     private Double basePrice;
     private String description;
+    @Enumerated(EnumType.STRING)
     private ServiceModel model;
     @OneToOne
     private Service parentService;
 
     @Builder
-    public Service(Integer id, Integer name, Double basePrice, String description, ServiceModel model, Service parentService) {
+    public Service(Integer id, String name, Double basePrice, String description, ServiceModel model, Service parentService) {
         this.id = id;
         this.name = name;
         this.basePrice = basePrice;
         this.description = description;
         this.model = model;
         this.parentService = parentService;
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" + "id=" + id + ", name='" + name + ", basePrice=" + basePrice + ", description='" + description + ", model=" + model + ", parentService=" + parentService + '}';
     }
 }

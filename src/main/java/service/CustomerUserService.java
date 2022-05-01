@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import repository.CustomerUserRepository;
 import service.baseService.CRUDService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class CustomerUserService extends CRUDService<CustomerUser> {
@@ -51,6 +52,51 @@ public class CustomerUserService extends CRUDService<CustomerUser> {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 transaction.rollback();
+                return null;
+            }
+        }
+    }
+
+    public CustomerUser findById(Integer id) {
+        try (var session = sessionFactory.getCurrentSession()) {
+            var transaction = session.getTransaction();
+            try {
+                transaction.begin();
+                return customerUserRepository.findById(id);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return null;
+            }
+        }
+    }
+
+    public List<CustomerUser> findAll() {
+        try (var session = sessionFactory.getCurrentSession()) {
+            var transaction = session.getTransaction();
+            try {
+                transaction.begin();
+                return customerUserRepository.findAll();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return null;
+            }
+        }
+    }
+
+    public List<CustomerUser> findByParameters(String firstName, String lastName,
+                                           String nationalCode, String email,
+                                           LocalDateTime registerTimeDate) {
+        try (var session = sessionFactory.getCurrentSession()) {
+            var transaction = session.getTransaction();
+            try {
+                transaction.begin();
+                return customerUserRepository.findByParameters(firstName,
+                        lastName,
+                        nationalCode,
+                        email,
+                        registerTimeDate);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
                 return null;
             }
         }
