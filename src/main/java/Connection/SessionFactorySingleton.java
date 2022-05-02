@@ -19,18 +19,17 @@ public class SessionFactorySingleton {
                     .build();
 
             INSTANCE = new MetadataSources(registry)
-                    .addAnnotatedClass(AdminUser.class)
-                    .addAnnotatedClass(CustomerUser.class)
-                    .addAnnotatedClass(ExpertUser.class)
-                    .addAnnotatedClass(Service.class)
-                    .addAnnotatedClass(Order.class)
+                    .addAnnotatedClass(Admin.class)
+                    .addAnnotatedClass(Customer.class)
+                    .addAnnotatedClass(Expert.class)
                     .addAnnotatedClass(Offer.class)
-                    .addAnnotatedClass(Comment.class)
+                    .addAnnotatedClass(Order.class)
                     .addAnnotatedClass(Wallet.class)
+                    .addAnnotatedClass(SysService.class)
+                    .addAnnotatedClass(SysTransaction.class)
+                    .addAnnotatedClass(Comment.class)
                     .buildMetadata()
                     .buildSessionFactory();
-
-
         }
     }
 

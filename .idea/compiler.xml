@@ -7,7 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Maktab-FinalProject" />
+        <module name="NewFinal" />
       </profile>
     </annotationProcessing>
   </component>

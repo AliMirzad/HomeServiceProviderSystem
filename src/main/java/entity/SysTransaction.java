@@ -1,5 +1,6 @@
 package entity;
 
+import entity.enums.TransactionModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,11 +11,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "comments")
-public class Comment {
+@Table(name = "sys_transactions")
+public class SysTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Double point;
-    private String comment;
+    @Enumerated(EnumType.STRING)
+    private TransactionModel model;
+    private Double amount;
+    private Integer walletId;
 }

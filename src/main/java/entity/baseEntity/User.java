@@ -2,7 +2,6 @@ package entity.baseEntity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
