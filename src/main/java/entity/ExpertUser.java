@@ -23,27 +23,29 @@ public class ExpertUser extends User {
     @Enumerated(EnumType.STRING)
     private ExpertUserStatus status;
     private Double point;
-    @OneToMany
-    private Set<Offer> offers;
     @OneToOne
     private Wallet wallet;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "expert_service"
     )
     private Set<Service> services;
 
     @Builder
-    public ExpertUser(String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Integer id, ExpertUserStatus status, Double point, Set<Offer> offers) {
+    public ExpertUser(String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Integer id, ExpertUserStatus status, Double point, Wallet wallet, Set<Service> services) {
         super(firstName, lastName, email, nationalCode, password, registerTime, profileImage);
         this.id = id;
         this.status = status;
         this.point = point;
-        this.offers = offers;
+        this.wallet = wallet;
+        this.services = services;
     }
+
+    @Builder
+
 
     @Override
     public String toString() {
-        return "Expert{" + "id=" + id + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + " ,service="+ getServices() + '}';
+        return "Expert{" + "id=" + id + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + " ,service=" + getServices() + '}';
     }
 }

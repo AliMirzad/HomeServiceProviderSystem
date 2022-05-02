@@ -1,8 +1,9 @@
 package entity.enums;
 
 public enum OrderStatus {
-    selection,
+    new_req,
     suggestion,
+    selection,
     coming,
     starting,
     done,

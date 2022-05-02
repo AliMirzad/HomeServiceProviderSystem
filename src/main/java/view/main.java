@@ -1,30 +1,29 @@
 package view;
 
 import Connection.SessionFactorySingleton;
-import entity.AdminUser;
-import entity.CustomerUser;
-import entity.ExpertUser;
-import entity.Service;
+import entity.*;
 import entity.enums.ExpertUserStatus;
 import entity.enums.ServiceModel;
 import org.hibernate.SessionFactory;
 import repository.CustomerUserRepository;
-import service.AdminUserService;
-import service.CustomerUserService;
-import service.ExpertUserService;
-import service.ServiceService;
+import service.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class main {
     //faqat method hayi ke logic khasi darand add shode dar in qesmat
     public static void main(String[] args) {
+        SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
         CustomerUserService customerUserService = new CustomerUserService();
         AdminUserService adminUserService = new AdminUserService();
         ServiceService serviceService = new ServiceService();
         ExpertUserService expertUserService = new ExpertUserService();
+        OrderService orderService = new OrderService();
+        OfferService offerService = new OfferService();
 
         //save customer
-        /*SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
-        CustomerUser customerUser = CustomerUser.builder().id(null).password("123").nationalCode("4490434").email("alvinmirzad").build();
+        /*CustomerUser customerUser = CustomerUser.builder().id(null).password("123").nationalCode("4490434").email("alvinmirzad").build();
         customerUserService.save(customerUser);*/
 
         //update customer
@@ -54,6 +53,27 @@ public class main {
         expertUserService.update(expertUser);
         Service service3 = Service.builder().id(2).build();
         expertUserService.updateService(expertUser ,service3);*/
+
+        //save order by logic
+        /*Service service = serviceService.findById(2);
+        CustomerUser customerUser = CustomerUser.builder().id(1).build();
+        String dateTime = "2023-06-03 20:19";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        Order order = Order.builder().orderRegisterTime(LocalDateTime.parse(dateTime, formatter)).description("aslfjaslkf").customerUser(customerUser).address("asfkljaskf").offerPrice(540D).service(service).build();
+        orderService.saveByLogic(order);*/
+
+        //offer to an order
+        /*ExpertUser expertUser = new ExpertUser();
+        expertUser.setId(1);
+        Order order = Order.builder().id(1).build();
+        String dateTime = "2023-06-03 20:19";
+        String dateTime2 = "2023-07-03 20:19";
+        String dateTime3 = "2022-11-03 20:19";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        Offer offer = Offer.builder().id(null).offerPrice(200D).startTime(LocalDateTime.parse(dateTime, formatter)).endTime(LocalDateTime.parse(dateTime2, formatter)).registrationDateTime(LocalDateTime.parse(dateTime3, formatter)).expertUser(expertUser).order(order).build();
+        offerService.save(offer);*/
+
+
 
     }
 }
