@@ -1,6 +1,7 @@
 package entity;
 
 import entity.enums.OrderStatus;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,18 @@ public class Order {
     private OrderStatus status;
 
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Offer> offers;
+
+
+    @Builder
+    public Order(Integer id, Double offerPrice, String description, LocalDateTime orderRegisterTime, String address, OrderStatus status, Set<Offer> offers) {
+        this.id = id;
+        this.offerPrice = offerPrice;
+        this.description = description;
+        this.orderRegisterTime = orderRegisterTime;
+        this.address = address;
+        this.status = status;
+        this.offers = offers;
+    }
 }

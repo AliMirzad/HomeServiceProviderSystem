@@ -1,12 +1,14 @@
 package repository;
 
 import Connection.SessionFactorySingleton;
+import entity.SysTransaction;
 import org.hibernate.SessionFactory;
 import repository.baseRepository.CRUDRepository;
+import service.SysTransactionServ;
 
 import java.util.List;
 
-public class SysTransaction extends CRUDRepository<SysTransaction> {
+public class SysTransactionRepo extends CRUDRepository<SysTransactionRepo> {
 
     private final SessionFactory sessionFactory = SessionFactorySingleton.getInstance();
 
