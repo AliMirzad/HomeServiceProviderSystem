@@ -12,23 +12,31 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_transactions")
-public class SysTransaction {
+@Table(name = "transactions")
+public class Transactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Enumerated(EnumType.STRING)
     private TransactionModel model;
-    private Double amount;
     private Double remain;
+    private Double amount;
     private Integer walletId;
+    //---------------------------------------relations
+    @ManyToOne
+    private Customer customer;
+    @ManyToOne
+    private Expert expert;
 
+    //---------------------------------------toString, cons
     @Builder
-    public SysTransaction(Integer id, TransactionModel model, Double amount, Double remain, Integer walletId) {
+    public Transactions(Integer id, TransactionModel model, Double remain, Double amount, Integer walletId, Customer customer, Expert expert) {
         this.id = id;
         this.model = model;
-        this.amount = amount;
         this.remain = remain;
+        this.amount = amount;
         this.walletId = walletId;
+        this.customer = customer;
+        this.expert = expert;
     }
 }

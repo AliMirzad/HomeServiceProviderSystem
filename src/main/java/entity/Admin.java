@@ -13,20 +13,16 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@DiscriminatorValue("admin")
 @Table(name = "admins")
 public class Admin extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @Builder
-    public Admin(String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Integer id) {
-        super(firstName, lastName, email, nationalCode, password, registerTime, profileImage);
-        this.id = id;
+    public Admin(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage) {
+        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
     }
 
     @Override
     public String toString() {
-        return "Admin{" + "id=" + id + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + '}';
+        return "Admin{" + "id=" + getId() + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + '}';
     }
 }

@@ -13,16 +13,24 @@ import javax.persistence.*;
 @Entity
 @Table(name = "comments")
 public class Comment {
+    //-----------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer point;
     private String comment;
-
+    private Boolean point;
+    //-------------------------------------------------relations
+    @ManyToOne
+    private Customer customer;
+    @ManyToOne
+    private Expert expert;
+    //-------------------------------------------------toString, cons
     @Builder
-    public Comment(Integer id, Integer point, String comment) {
+    public Comment(Integer id, String comment, Boolean point, Customer customer, Expert expert) {
         this.id = id;
-        this.point = point;
         this.comment = comment;
+        this.point = point;
+        this.customer = customer;
+        this.expert = expert;
     }
 }

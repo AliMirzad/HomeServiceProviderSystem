@@ -16,32 +16,34 @@ import java.util.Set;
 @Entity
 @Table(name = "orders")
 public class Order {
+    //--------------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true)
-    private Double offerPrice;
-    @Column(unique = true)
-    private String description;
     private LocalDateTime orderRegisterTime;
-    @Column(unique = true)
+    private Double suggestPrice;
     private String address;
+    private String description;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-
-
-    @OneToMany(fetch = FetchType.EAGER)
+    //-----------------------------------------------relations
+    @ManyToOne
+    private Customer customer;
+    @OneToMany(mappedBy = "order")
     private Set<Offer> offers;
-
-
+    @ManyToOne
+    private Services services;
+    //------------------------------------------------------toString, cons
     @Builder
-    public Order(Integer id, Double offerPrice, String description, LocalDateTime orderRegisterTime, String address, OrderStatus status, Set<Offer> offers) {
+    public Order(Integer id, LocalDateTime orderRegisterTime, Double suggestPrice, String address, String description, OrderStatus status, Customer customer, Set<Offer> offers, Services services) {
         this.id = id;
-        this.offerPrice = offerPrice;
-        this.description = description;
         this.orderRegisterTime = orderRegisterTime;
+        this.suggestPrice = suggestPrice;
         this.address = address;
+        this.description = description;
         this.status = status;
+        this.customer = customer;
         this.offers = offers;
+        this.services = services;
     }
 }

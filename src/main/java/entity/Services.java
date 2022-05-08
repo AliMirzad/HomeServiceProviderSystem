@@ -14,7 +14,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "services")
-public class SysService {
+public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,20 +24,23 @@ public class SysService {
     private String description;
     @Enumerated(EnumType.STRING)
     private ServiceModel model;
-
-
+    //-----------------------------------------------relations
+    @ManyToOne
+    private Expert expert;
     @OneToOne
-    private SysService parentService;
-    @OneToMany
+    private Services parentService;
+    @OneToMany(mappedBy = "services")
     private Set<Order> orders;
-
+    //------------------------------------------------------toString, cons
     @Builder
-    public SysService(Integer id, String name, Double basePrice, String description, ServiceModel model, SysService parentService) {
+    public Services(Integer id, String name, Double basePrice, String description, ServiceModel model, Expert expert, Services parentService, Set<Order> orders) {
         this.id = id;
         this.name = name;
         this.basePrice = basePrice;
         this.description = description;
         this.model = model;
+        this.expert = expert;
         this.parentService = parentService;
+        this.orders = orders;
     }
 }

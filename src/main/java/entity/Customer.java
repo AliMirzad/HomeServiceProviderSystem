@@ -15,32 +15,33 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@DiscriminatorValue("customer")
 @Table(name = "customers")
 public class Customer extends User {
+    //-----------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Enumerated(EnumType.STRING)
     private CustomerUserStatus status;
-
-
-    @OneToMany(fetch = FetchType.EAGER)
+    //-----------------------------------------------relation
+    @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
-    @OneToOne
-    private Wallet wallet;
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<SysTransaction> sysTransactions;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer")
     private Set<Comment> comments;
-
+    @OneToOne(mappedBy = "customer")
+    private Wallet wallet;
+    @OneToMany(mappedBy = "customer")
+    private Set<Transactions> transactions;
+    //----------------------------------------------toString, Cons
     @Builder
-    public Customer(String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Integer id, CustomerUserStatus status, Set<Order> orders, Wallet wallet, Set<SysTransaction> sysTransactions, Set<Comment> comments) {
-        super(firstName, lastName, email, nationalCode, password, registerTime, profileImage);
-        this.id = id;
+    public Customer(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Integer id1, CustomerUserStatus status, Set<Order> orders, Set<Comment> comments, Wallet wallet, Set<Transactions> transactions) {
+        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
+        this.id = id1;
         this.status = status;
         this.orders = orders;
-        this.wallet = wallet;
-        this.sysTransactions = sysTransactions;
         this.comments = comments;
+        this.wallet = wallet;
+        this.transactions = transactions;
     }
 }
