@@ -4,12 +4,14 @@ import com.Maktab.Final.entity.Expert;
 import com.Maktab.Final.entity.Offer;
 import com.Maktab.Final.entity.SubService;
 import com.Maktab.Final.entity.Wallet;
+import com.Maktab.Final.entity.enums.OfferStatus;
 import com.Maktab.Final.entity.middleEntity.Expert_Service;
 import com.Maktab.Final.repository.ExpertRepo;
 import com.Maktab.Final.service.serviceInterface.ExpertServInt;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 public class ExpertServ implements ExpertServInt {
@@ -41,6 +43,7 @@ public class ExpertServ implements ExpertServInt {
 
     @Transactional
     public void createExpert(Expert expert) {
+        expert.setPoint(100);
         expertRepo.save(expert);
     }
 
@@ -54,7 +57,9 @@ public class ExpertServ implements ExpertServInt {
     @Transactional
     public void saveOffer(Integer id, Offer offer) {
         Expert expert = expertRepo.findExpertById(id);
+        offer.setRegistrationDateTime(LocalDateTime.now());
         offer.setExpert(expert);
+        offer.setStatus(OfferStatus.pending);
         offerServ.save(offer);
     }
 

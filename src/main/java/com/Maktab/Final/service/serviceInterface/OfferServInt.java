@@ -10,4 +10,5 @@ public interface OfferServInt {
     public Offer findOfferById(Integer id);
     public List<Offer> findOfferByExpert(Expert expert);
     public List<Offer> findOfferByOrder(Order order);
+    public void deleteAllByOrder(Order order);
 }

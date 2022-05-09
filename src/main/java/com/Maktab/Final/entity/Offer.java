@@ -1,5 +1,6 @@
 package com.Maktab.Final.entity;
 
+import com.Maktab.Final.entity.enums.OfferStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,19 +23,23 @@ public class Offer {
     private Double offerPrice;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-//--------------------------------------------------------------relations
+    @Enumerated(EnumType.STRING)
+    private OfferStatus status;
+    //--------------------------------------------------------------relations
     @ManyToOne
     private Expert expert;
     @ManyToOne
     private Order order;
-//--------------------------------------------------------------toString, cons
+
+    //--------------------------------------------------------------toString, cons
     @Builder
-    public Offer(Integer id, LocalDateTime registrationDateTime, Double offerPrice, LocalDateTime startTime, LocalDateTime endTime, Expert expert, Order order) {
+    public Offer(Integer id, LocalDateTime registrationDateTime, Double offerPrice, LocalDateTime startTime, LocalDateTime endTime, OfferStatus status, Expert expert, Order order) {
         this.id = id;
         this.registrationDateTime = registrationDateTime;
         this.offerPrice = offerPrice;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.status = status;
         this.expert = expert;
         this.order = order;
     }

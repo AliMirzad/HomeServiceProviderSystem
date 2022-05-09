@@ -31,6 +31,7 @@ public class Order {
     private Customer customer;
     @ManyToOne
     private SubService subService;
+
     //------------------------------------------------------toString, cons
     @Builder
     public Order(Integer id, LocalDateTime orderRegisterTime, Double suggestPrice, String address, String description, OrderStatus status, Customer customer, SubService subService) {

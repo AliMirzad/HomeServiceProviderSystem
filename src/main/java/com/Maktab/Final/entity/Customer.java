@@ -19,17 +19,14 @@ import java.util.Set;
 @Table(name = "customers")
 public class Customer extends User {
     //-----------------------------------------------fields
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     @Enumerated(EnumType.STRING)
     private CustomerUserStatus status;
+
     //-----------------------------------------------relation
     //----------------------------------------------toString, Cons
     @Builder
-    public Customer(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Integer id1, CustomerUserStatus status) {
+    public Customer(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, CustomerUserStatus status) {
         super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
-        this.id = id1;
         this.status = status;
     }
 }

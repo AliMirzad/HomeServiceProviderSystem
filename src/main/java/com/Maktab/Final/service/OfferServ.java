@@ -35,6 +35,11 @@ public class OfferServ implements OfferServInt {
         return offerRepo.findOfferByOrder(order);
     }
 
+    @Override
+    public void deleteAllByOrder(Order order) {
+        offerRepo.deleteAllByOrder(order);
+    }
+
     @Transactional
     public void save(Offer offer) {
         offerRepo.save(offer);

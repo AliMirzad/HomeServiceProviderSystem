@@ -1,5 +1,6 @@
 package com.Maktab.Final.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,8 +23,9 @@ public class SubService {
     //----------------------------------------------------relations
     @ManyToOne
     private Services services;
-    //------------------------------------------------------toString, cons
 
+    //------------------------------------------------------toString, cons
+    @Builder
     public SubService(Integer id, String name, Double basePrice, String description, Services services) {
         this.id = id;
         this.name = name;
