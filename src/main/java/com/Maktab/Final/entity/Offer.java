@@ -26,9 +26,9 @@ public class Offer {
     @Enumerated(EnumType.STRING)
     private OfferStatus status;
     //--------------------------------------------------------------relations
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Expert expert;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Order order;
 
     //--------------------------------------------------------------toString, cons
@@ -42,5 +42,19 @@ public class Offer {
         this.status = status;
         this.expert = expert;
         this.order = order;
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "id=" + id +
+                ", registrationDateTime=" + registrationDateTime +
+                ", offerPrice=" + offerPrice +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", status=" + status +
+                ", expert=" + expert +
+                ", order=" + order +
+                '}';
     }
 }

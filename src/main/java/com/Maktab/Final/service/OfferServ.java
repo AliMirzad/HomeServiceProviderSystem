@@ -5,6 +5,8 @@ import com.Maktab.Final.entity.Offer;
 import com.Maktab.Final.entity.Order;
 import com.Maktab.Final.repository.OfferRepo;
 import com.Maktab.Final.service.serviceInterface.OfferServInt;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,8 +33,8 @@ public class OfferServ implements OfferServInt {
     }
 
     @Override
-    public List<Offer> findOfferByOrder(Order order) {
-        return offerRepo.findOfferByOrder(order);
+    public List<Offer> findOfferByOrderWithSort(Order order, String sortName) {
+        return offerRepo.findOfferByOrder(order, Sort.by(Sort.Direction.DESC, sortName));
     }
 
     @Override

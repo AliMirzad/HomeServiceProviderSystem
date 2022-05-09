@@ -34,4 +34,13 @@ public class Expert extends User {
         this.status = status;
         this.point = point;
     }
+
+    @Override
+    public String toString() {
+        return "Expert{" +
+                "id=" + id +
+                ", status=" + status +
+                ", point=" + point +
+                '}';
+    }
 }

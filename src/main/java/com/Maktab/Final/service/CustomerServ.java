@@ -5,6 +5,7 @@ import com.Maktab.Final.entity.enums.OfferStatus;
 import com.Maktab.Final.entity.enums.OrderStatus;
 import com.Maktab.Final.repository.CustomerRepo;
 import com.Maktab.Final.service.serviceInterface.CustomerServInt;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

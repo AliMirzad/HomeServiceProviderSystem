@@ -4,6 +4,7 @@ import com.Maktab.Final.entity.*;
 import com.Maktab.Final.service.AdminServ;
 import com.Maktab.Final.service.CustomerServ;
 import com.Maktab.Final.service.ExpertServ;
+import com.Maktab.Final.service.OfferServ;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,12 +25,14 @@ public class FinalApplication {
         private final CustomerServ customerServ;
         private final ExpertServ expertServ;
         private final AdminServ adminServ;
+        private final OfferServ offerServ;
 
 
-        public OnStartup(CustomerServ customerServ, ExpertServ expertServ, AdminServ adminServ) {
+        public OnStartup(CustomerServ customerServ, ExpertServ expertServ, AdminServ adminServ, OfferServ offerServ) {
             this.customerServ = customerServ;
             this.expertServ = expertServ;
             this.adminServ = adminServ;
+            this.offerServ = offerServ;
         }
 
         @Override
@@ -40,8 +43,8 @@ public class FinalApplication {
             SubService subService = SubService.builder().id(null).basePrice(1100D).name("taviz lmap").description("lampo avaz mikonan").services(services).build();
             Customer customer = Customer.builder().id(null).email("ali@").firstName("ali").lastName("mirzad").nationalCode("449444").password("449444").build();
             Expert expert = Expert.builder().id(null).email("mamad@").firstName("mamad").lastName("mirzad").nationalCode("449443").password("449443").build();
-//
-//
+
+
 //            expertServ.createExpert(expert);
             subService.setId(1);
             expert.setId(1);
@@ -50,23 +53,25 @@ public class FinalApplication {
 //            adminServ.createService(services);
 //            adminServ.createSubService(subService, services.getId());
 
-            //save Order
+            //1-save customer order
             Order order = Order.builder().id(null).subService(subService).address("ilam").description("lamp avazi").suggestPrice(1200D).build();
-//            customer.setId(2);
+            customer.setId(2);
 //            customerServ.saveOrder(customer.getId(), order);
 
-            //save offer
+            //2-save offer for order
             order.setId(1);
             Offer offer = Offer.builder().id(null).offerPrice(1300D).order(order).build();
-//            expertServ.saveOffer(1, offer);
+//            expertServ.saveOffer(1, offer1);
 
-            //
 
-            //select offer for customer
+            //3-select offer for customer order
 //            customerServ.chooseOfferForOrder(1, 1);
 
 
-
+            //4-select offers of order with sort param
+//            offerServ.findOfferByOrderWithSort(order, "offerPrice").forEach(System.out::println);
+//            System.out.println("------------------");
+//            offerServ.findOfferByOrderWithSort(order, "expert_point").forEach(System.out::println);
         }
     }
 
