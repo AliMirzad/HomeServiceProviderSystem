@@ -72,6 +72,18 @@ public class FinalApplication {
 //            offerServ.findOfferByOrderWithSort(order, "offerPrice").forEach(System.out::println);
 //            System.out.println("------------------");
 //            offerServ.findOfferByOrderWithSort(order, "expert_point").forEach(System.out::println);
+
+//            for (Customer c:
+//            customerServ.findByFirstNameAndLastNameAndNationalCodeAndRegisterTimeDate("ali", null, null, null)) {
+//                System.out.println(c);
+//            }
+
+            //paging sorting filtering customer
+//            CustomerPage customerPage = new CustomerPage();
+//            CustomerSearchCriteria customerSearchCriteria = new CustomerSearchCriteria();
+//            customerSearchCriteria.setLastName("mirzad");
+//            customerPage.setPageSize(5);
+//            customerServ.getCustomers(customerPage, customerSearchCriteria).forEach(System.out::println);
         }
     }
 

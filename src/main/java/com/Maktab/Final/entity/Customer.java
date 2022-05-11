@@ -29,4 +29,11 @@ public class Customer extends User {
         super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "status=" + status +
+                '}';
+    }
 }

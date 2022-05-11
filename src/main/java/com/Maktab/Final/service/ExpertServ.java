@@ -1,13 +1,12 @@
 package com.Maktab.Final.service;
 
-import com.Maktab.Final.entity.Expert;
-import com.Maktab.Final.entity.Offer;
-import com.Maktab.Final.entity.SubService;
-import com.Maktab.Final.entity.Wallet;
+import com.Maktab.Final.entity.*;
 import com.Maktab.Final.entity.enums.OfferStatus;
 import com.Maktab.Final.entity.middleEntity.Expert_Service;
+import com.Maktab.Final.repository.ExpertCriteriaRepo;
 import com.Maktab.Final.repository.ExpertRepo;
 import com.Maktab.Final.service.serviceInterface.ExpertServInt;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,13 +16,15 @@ import java.time.LocalDateTime;
 public class ExpertServ implements ExpertServInt {
     //---------------------------------------------------------needed
     private final ExpertRepo expertRepo;
+    private final ExpertCriteriaRepo expertCriteriaRepo;
     private final OfferServ offerServ;
     private final SubServiceServ subServiceServ;
     private final Expert_ServiceServ expert_serviceServ;
     private final WalletServ walletServ;
 
-    public ExpertServ(ExpertRepo expertRepo, OfferServ offerServ, SubServiceServ subServiceServ, Expert_ServiceServ expert_serviceServ, WalletServ walletServ) {
+    public ExpertServ(ExpertRepo expertRepo, ExpertCriteriaRepo expertCriteriaRepo, OfferServ offerServ, SubServiceServ subServiceServ, Expert_ServiceServ expert_serviceServ, WalletServ walletServ) {
         this.expertRepo = expertRepo;
+        this.expertCriteriaRepo = expertCriteriaRepo;
         this.offerServ = offerServ;
         this.subServiceServ = subServiceServ;
         this.expert_serviceServ = expert_serviceServ;
@@ -81,5 +82,11 @@ public class ExpertServ implements ExpertServInt {
     @Transactional
     public void update(Expert expert) {
         expertRepo.save(expert);
+    }
+
+    @Override
+    public Page<Expert> getCustomers(ExpertPage expertPage,
+                                       ExpertSearchCriteria expertSearchCriteria) {
+        return expertCriteriaRepo.findAllWithFilters(expertPage, expertSearchCriteria);
     }
 }

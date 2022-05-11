@@ -3,6 +3,7 @@ package com.Maktab.Final.service;
 import com.Maktab.Final.entity.*;
 import com.Maktab.Final.entity.enums.OfferStatus;
 import com.Maktab.Final.entity.enums.OrderStatus;
+import com.Maktab.Final.repository.CustomerCriteriaRepo;
 import com.Maktab.Final.repository.CustomerRepo;
 import com.Maktab.Final.service.serviceInterface.CustomerServInt;
 import org.springframework.data.domain.Page;
@@ -10,19 +11,22 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CustomerServ implements CustomerServInt {
     //--------------------------------------------------------------needed
     private final CustomerRepo customerRepo;
+    private final CustomerCriteriaRepo customerCriteriaRepo;
     private final OrderServ orderServ;
     private final CommentServ commentServ;
     private final ExpertServ expertServ;
     private final WalletServ walletServ;
     private final OfferServ offerServ;
 
-    public CustomerServ(CustomerRepo customerRepo, OrderServ orderServ, CommentServ commentServ, ExpertServ expertServ, WalletServ walletServ, OfferServ offerServ) {
+    public CustomerServ(CustomerRepo customerRepo, CustomerCriteriaRepo customerCriteriaRepo, OrderServ orderServ, CommentServ commentServ, ExpertServ expertServ, WalletServ walletServ, OfferServ offerServ) {
         this.customerRepo = customerRepo;
+        this.customerCriteriaRepo = customerCriteriaRepo;
         this.orderServ = orderServ;
         this.commentServ = commentServ;
         this.expertServ = expertServ;
@@ -39,6 +43,13 @@ public class CustomerServ implements CustomerServInt {
     @Override
     public Customer findCustomerByNationalCodeAndPassword(String nationalCode, String password) {
         return customerRepo.findCustomerByNationalCodeAndPassword(nationalCode, password);
+    }
+
+    @Override
+    public List<Customer> findByFirstNameAndLastNameAndNationalCodeAndRegisterTimeDate(String firstName, String lastName, String nationalCode, String email) {
+//        List<Customer> customers = customerRepo.findCustomerByFirstNameAndLastNameAndNationalCodeAndEmail(firstName, lastName, nationalCode, email);
+//        return customers;
+        return null;
     }
 
     @Transactional
@@ -91,4 +102,9 @@ public class CustomerServ implements CustomerServInt {
         orderServ.save(order);
     }
 
+    @Override
+    public Page<Customer> getCustomers(CustomerPage customerPage,
+                                        CustomerSearchCriteria customerSearchCriteria) {
+        return customerCriteriaRepo.findAllWithFilters(customerPage, customerSearchCriteria);
+    }
 }
