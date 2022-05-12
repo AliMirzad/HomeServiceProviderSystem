@@ -9,5 +9,4 @@ public class ExpertSearchCriteria {
     private String firstName;
     private String lastName;
     private String nationalCode;
-    private Integer Point;
 }

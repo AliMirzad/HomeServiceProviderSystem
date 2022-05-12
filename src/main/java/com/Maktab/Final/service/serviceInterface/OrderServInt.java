@@ -9,5 +9,5 @@ import java.util.List;
 public interface OrderServInt {
     public Order findOrderById(Integer id);
     public List<Order> findOrderByCustomer(Customer customer);
-    public List<Order> findOrderBySubService(SubService subService);
+    public List<Order> findOrderBySubServices(SubService subService);
 }

@@ -11,6 +11,5 @@ import java.util.List;
 public interface CustomerServInt {
     public Customer findCustomerById(Integer id);
     public Customer findCustomerByNationalCodeAndPassword(String nationalCode, String password);
-    public List<Customer> findByFirstNameAndLastNameAndNationalCodeAndRegisterTimeDate(String firstName, String lastName, String nationalCode, String email);
     public Page<Customer> getCustomers(CustomerPage customerPage, CustomerSearchCriteria customerSearchCriteria);
 }

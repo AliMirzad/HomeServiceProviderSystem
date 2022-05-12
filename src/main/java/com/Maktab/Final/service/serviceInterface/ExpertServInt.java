@@ -8,5 +8,5 @@ import org.springframework.data.domain.Page;
 public interface ExpertServInt {
     public Expert findExpertById(Integer id);
     public Expert findExpertByNationalCodeAndPassword(String nationalCode, String password);
-    public Page<Expert> getCustomers(ExpertPage expertPage, ExpertSearchCriteria expertSearchCriteria);
+    public Page<Expert> getExpert(ExpertPage expertPage, ExpertSearchCriteria expertSearchCriteria);
 }
