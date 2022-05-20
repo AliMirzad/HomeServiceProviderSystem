@@ -46,8 +46,10 @@ public class SubServiceService implements SubServiceServiceInterface {
     }
 
 
-    public void create(SubService subService) {
-        if (subService.getServices() == null) throw new LogicErrorException("service sub service can't be null");
+    public void create(SubService subService, String serviceName) {
+        Services services = servicesService.findServicesByName(serviceName);
+        if (services == null) throw new LogicErrorException("service sub service not found");
+        subService.setServices(services);
         if (subService.getBasePrice() == null || subService.getBasePrice() <= 100)
             throw new LogicErrorException("base price sub service must be more then 100 coin");
         if (subService.getDescription() == null || subService.getDescription().isEmpty()) throw new LogicErrorException("description sub service can't be null/empty");
