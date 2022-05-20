@@ -1,17 +1,15 @@
 package com.Maktab.Final.model.service;
 
+import com.Maktab.Final.controller.dto.SubServiceDTO;
 import com.Maktab.Final.model.entity.Services;
 import com.Maktab.Final.model.entity.SubService;
 import com.Maktab.Final.model.repository.SubServiceRepository;
 import com.Maktab.Final.model.service.serviceInterface.SubServiceServiceInterface;
 import com.Maktab.Final.model.exception.LogicErrorException;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -35,6 +33,11 @@ public class SubServiceService implements SubServiceServiceInterface {
     }
 
     @Override
+    public SubServiceDTO findSubServiceDTOById(Integer id) {
+        return null;
+    }
+
+    @Override
     public List<SubService> findSubServiceByServices(Services services) {
         if (servicesService.findServicesById(services.getId()) == null) throw new LogicErrorException("service sub service not found");
         List<SubService> subServices = subServiceRepository.findSubServiceByServices(services);
@@ -51,4 +54,5 @@ public class SubServiceService implements SubServiceServiceInterface {
         if (subService.getName() == null || subService.getName().isEmpty()) throw new LogicErrorException("name sub service can't be null/empty");
         subServiceRepository.save(subService);
     }
+
 }

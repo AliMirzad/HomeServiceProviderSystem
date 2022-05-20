@@ -49,15 +49,8 @@ public class OfferService implements OfferServiceInterface {
         return offerRepository.findOfferByOrder(order, Sort.by(Sort.Direction.DESC, sortName));
     }
 
-    @Override
-    public void deleteAllByOrder(Order order) {
-        if (orderService.findOrderById(order.getId()) == null) throw new LogicErrorException("order offer not found");
-        offerRepository.deleteAllByOrder(order);
-    }
-
-
     public void create(Offer offer) {
-        if (offer.getId() != null) throw new LogicErrorException("offer id must be null/empty");
+        offer.setId(null);
         if (orderService.findOrderById(offer.getOrder().getId()) == null) throw new LogicErrorException("order offer not found");
         if (expertService.findExpertById(offer.getExpert().getId()) == null) throw new LogicErrorException("expert offer not found");
         if (offer.getOfferPrice() < offer.getOrder().getSuggestPrice() || offer.getOfferPrice() == null)
@@ -66,6 +59,10 @@ public class OfferService implements OfferServiceInterface {
             throw new LogicErrorException("offer end time must be after start time");
         if (offer.getStartTime().isBefore(offer.getOrder().getOrderRegisterTime()))
             throw new LogicErrorException("offer start time must be after order register time");
+        offerRepository.save(offer);
+    }
+
+    public void save(Offer offer) {
         offerRepository.save(offer);
     }
 }

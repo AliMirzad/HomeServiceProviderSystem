@@ -1,5 +1,6 @@
 package com.Maktab.Final.model.service;
 
+import com.Maktab.Final.controller.dto.AdminDTO;
 import com.Maktab.Final.model.entity.Admin;
 import com.Maktab.Final.model.exception.LogicErrorException;
 import com.Maktab.Final.model.repository.AdminRepository;
@@ -25,12 +26,11 @@ public class AdminService implements AdminServiceInterface {
     public Admin findAdminById(Integer id) {
         Admin admin = adminRepository.findAdminById(id);
         if (admin == null) throw new LogicErrorException("admin not found");
+        admin.setPassword(null);
         return admin;
     }
 
     public void create(Admin admin) {
-        if (admin.getId() != null) throw new LogicErrorException("admin id must be null/empty");
-        if (admin.getEmail() == null || admin.getEmail().isEmpty()) throw new LogicErrorException("admin email can't be null/empty");
         admin.setRegisterTime(LocalDateTime.now());
         adminRepository.save(admin);
     }

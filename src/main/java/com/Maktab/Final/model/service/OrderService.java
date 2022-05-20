@@ -54,8 +54,8 @@ public class OrderService implements OrderServiceInterface {
         return orders;
     }
 
-    @Transactional
-    public void save(Order order) {
+    public void create(Order order) {
+        order.setId(null);
         if (order.getAddress() == null || order.getAddress().isEmpty())
             throw new LogicErrorException("address order can't be null/empty");
         if (order.getDescription() == null || order.getDescription().isEmpty())
@@ -64,6 +64,10 @@ public class OrderService implements OrderServiceInterface {
         if (order.getSubService() == null) throw new LogicErrorException("sub service order can't be null/empty");
         order.setOrderRegisterTime(LocalDateTime.now());
         order.setStatus(OrderStatus.new_req);
+        orderRepository.save(order);
+    }
+
+    public void save(Order order) {
         orderRepository.save(order);
     }
 }

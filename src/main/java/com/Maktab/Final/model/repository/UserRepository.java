@@ -13,6 +13,8 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
     User findByNationalCodeAndPassword(String email, String password);
 
+    User findUserById(Integer id);
+
     @Override
     List<User> findAll(Specification<User> specification);
 }

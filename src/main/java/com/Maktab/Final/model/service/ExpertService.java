@@ -24,14 +24,12 @@ public class ExpertService implements ExpertServiceInterface {
     @Override
     public Expert findExpertById(Integer id) {
         Expert expert = expertRepository.findExpertById(id);
-        if (expert == null) throw new LogicErrorException("we need balance for wallet");
+        if (expert == null) throw new LogicErrorException("expert not found");
         return expert;
     }
 
-
     public void create(Expert expert) {
-        if (expert.getId() != null) throw new LogicErrorException("expert id must be null/empty");
-        if (expert.getEmail() == null || expert.getEmail().isEmpty()) throw new LogicErrorException("expert email can't be null/empty");
+        expert.setId(null);
         expert.setRegisterTime(LocalDateTime.now());
         expert.setPoint(100);
         expert.setStatus(ExpertUserStatus.waiting);

@@ -30,7 +30,6 @@ public class Offer {
     private Expert expert;
     @ManyToOne(fetch = FetchType.EAGER)
     private Order order;
-
     //--------------------------------------------------------------toString, cons
     @Builder
     public Offer(Integer id, LocalDateTime registrationDateTime, Double offerPrice, LocalDateTime startTime, LocalDateTime endTime, OfferStatus status, Expert expert, Order order) {

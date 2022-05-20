@@ -41,8 +41,6 @@ public class CommentService implements CommentServiceInterface {
     }
 
     public void create(Comment comment) {
-        if (comment.getComment() == null || comment.getComment().isEmpty())
-            throw new LogicErrorException("comment can't be null/empty");
         Expert expert = expertService.findExpertById(comment.getExpert().getId());
         if (expert == null) throw new LogicErrorException("comment expert not found");
         if (comment.getPoint()) expert.setPoint(expert.getPoint() + 1);

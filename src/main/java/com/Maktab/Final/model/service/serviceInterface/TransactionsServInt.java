@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface TransactionsServInt {
     public List<Transactions> findTransactionsByWalletId(Integer id);
+
     public List<Transactions> findTransactionsByCustomer(Customer customer);
+
     public List<Transactions> findTransactionsByExpert(Expert expert);
 }

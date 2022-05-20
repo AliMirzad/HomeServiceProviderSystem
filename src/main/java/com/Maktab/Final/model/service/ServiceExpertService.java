@@ -44,7 +44,7 @@ public class ServiceExpertService implements ServiceExpertServiceInterface {
         return serviceExpert;
     }
 
-    public void save(ServiceExpert serviceExpert) {
+    public void create(ServiceExpert serviceExpert) {
         if (expertService.findExpertById(serviceExpert.getExpert().getId()) == null)
             throw new LogicErrorException("expert expert service-expert not found");
         if (subServiceServ.findSubServiceById(serviceExpert.getSubService().getId()) == null)

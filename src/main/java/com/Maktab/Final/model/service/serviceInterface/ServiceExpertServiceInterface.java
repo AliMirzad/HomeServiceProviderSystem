@@ -5,6 +5,7 @@ import com.Maktab.Final.model.entity.SubService;
 import com.Maktab.Final.model.entity.middleEntity.ServiceExpert;
 
 public interface ServiceExpertServiceInterface {
-    public ServiceExpert findServiceExpertByExpert(Expert expert);
-    public ServiceExpert findServiceExpertBySubService(SubService subService);
+    ServiceExpert findServiceExpertByExpert(Expert expert);
+
+    ServiceExpert findServiceExpertBySubService(SubService subService);
 }

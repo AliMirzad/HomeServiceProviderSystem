@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class UserGridSearch {
 
-    public Specification<User> gridSearch(Integer userId, String email, String firstName, String lastName) {
+    public Specification<User> gridSearch(Integer userId, String email, String firstName, String lastName, String type) {
         return (root, query, criteriaBuilder) -> {
 
             List<Predicate> predicates = new ArrayList<>();
@@ -31,6 +31,10 @@ public class UserGridSearch {
 
             if (lastName != null && !lastName.isEmpty()) {
                 predicates.add(criteriaBuilder.like(root.get("lastName"), "%" + lastName + "%"));
+            }
+
+            if (type != null && !type.isEmpty()) {
+                predicates.add(criteriaBuilder.like(root.get("type"), "%" + type + "%"));
             }
 
             query.orderBy(criteriaBuilder.asc(root.get("lastName")));

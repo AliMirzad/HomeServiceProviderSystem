@@ -7,8 +7,9 @@ import com.Maktab.Final.model.entity.Order;
 import java.util.List;
 
 public interface OfferServiceInterface {
-    public Offer findOfferById(Integer id);
-    public List<Offer> findOfferByExpert(Expert expert);
-    public List<Offer> findOfferByOrderWithSort(Order order, String sortName);
-    public void deleteAllByOrder(Order order);
+    Offer findOfferById(Integer id);
+
+    List<Offer> findOfferByExpert(Expert expert);
+
+    List<Offer> findOfferByOrderWithSort(Order order, String sortName);
 }

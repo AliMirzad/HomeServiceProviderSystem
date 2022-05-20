@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
-    public Admin findAdminById(Integer id);
+    Admin findAdminById(Integer id);
 }

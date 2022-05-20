@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface CommentServiceInterface {
     List<Comment> findCommentByExpert(Expert expert);
+
     List<Comment> findCommentByCustomer(Customer customer);
 }

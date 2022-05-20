@@ -1,5 +1,6 @@
 package com.Maktab.Final.model.service;
 
+import com.Maktab.Final.controller.dto.CustomerDTO;
 import com.Maktab.Final.model.entity.*;
 import com.Maktab.Final.model.entity.enums.CustomerUserStatus;
 import com.Maktab.Final.model.entity.enums.OfferStatus;
@@ -42,8 +43,7 @@ public class CustomerService implements CustomerServiceInterface {
     }
 
     public void create(Customer customer) {
-        if (customerRepository.findCustomerById(customer.getId()) != null) throw new LogicErrorException("customer id must be null/empty");
-        if (customer.getEmail() == null || customer.getEmail().isEmpty()) throw new LogicErrorException("customer email can't be null/empty");
+        customer.setId(null);
         customer.setRegisterTime(LocalDateTime.now());
         customer.setStatus(CustomerUserStatus.fresh);
         customerRepository.save(customer);
@@ -57,7 +57,7 @@ public class CustomerService implements CustomerServiceInterface {
         order.setStatus(OrderStatus.selection);
         offer.setStatus(OfferStatus.selected);
         offer.setOrder(order);
-        offerService.create(offer);
+        offerService.save(offer);
         orderService.save(order);
     }
 }

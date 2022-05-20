@@ -27,6 +27,13 @@ public class ServicesService implements ServiceServiceInterface {
     }
 
     @Override
+    public Services findServicesDTOByName(String name) {
+        Services services = servicesRepository.findServicesByName(name);
+        if (services == null) throw new LogicErrorException("service not found");
+        return services;
+    }
+
+    @Override
     public Services findServicesByName(String name) {
         Services services = servicesRepository.findServicesByName(name);
         if (services == null) throw new LogicErrorException("service not found");
@@ -34,9 +41,8 @@ public class ServicesService implements ServiceServiceInterface {
     }
 
     @Transactional
-    public void create(Services services) {
-        if (services.getName() == null || services.getName().isEmpty()) throw new LogicErrorException("name service can't be null/empty");
-        if (servicesRepository.findServicesByName(services.getName()) != null) throw new LogicErrorException("duplicate name service found");
-        servicesRepository.save(services);
+    public void create(Services service) {
+        if (servicesRepository.findServicesByName(service.getName()) != null) throw new LogicErrorException("duplicate name service found");
+        servicesRepository.save(service);
     }
 }

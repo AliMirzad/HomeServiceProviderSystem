@@ -22,6 +22,14 @@ public class UserService implements UserServiceInterface {
         this.userRepository = userRepository;
     }
 
+
+    @Override
+    public User findById(Integer id) {
+        User user = userRepository.findUserById(id);
+        if (user == null) throw new LogicErrorException("user not found");
+        return user;
+    }
+
     @Override
     public User login(String nationalCode, String password) {
         User users = userRepository.findByNationalCodeAndPassword(nationalCode, password);
@@ -37,8 +45,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public List<User> gridSearch(Integer userId, String email, String firstName, String lastName) {
-        Specification<User> specification = userGridSearch.gridSearch(userId, email, firstName, lastName);
+    public List<User> gridSearch(Integer userId, String email, String firstName, String lastName, String type) {
+        Specification<User> specification = userGridSearch.gridSearch(userId, email, firstName, lastName, type);
         return userRepository.findAll(specification);
     }
 }

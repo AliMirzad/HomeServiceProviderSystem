@@ -9,9 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface OfferRepository extends PagingAndSortingRepository<Offer, Integer> {
-    public Offer findOfferById(Integer id);
-    public List<Offer> findOfferByExpert(Expert expert);
-    public List<Offer> findOfferByOrder(Order order, Sort sort);
-    public void deleteAllByOrder(Order order);
-
+    Offer findOfferById(Integer id);
+    List<Offer> findOfferByExpert(Expert expert);
+    List<Offer> findOfferByOrder(Order order, Sort sort);
 }
