@@ -40,11 +40,4 @@ public class UserController {
             customerService.create(customer);
         }
     }
-
-    private User convertToEntity(UserDTO userDTO) {
-        return modelMapper.map(userDTO, User.class);
-    }
-    private UserDTO convertToDTO(User user){
-        return modelMapper.map(user, UserDTO.class);
-    }
 }
