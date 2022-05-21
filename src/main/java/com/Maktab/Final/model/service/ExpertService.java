@@ -28,6 +28,13 @@ public class ExpertService implements ExpertServiceInterface {
         return expert;
     }
 
+    @Override
+    public Expert findExpertByNationalCode(String nationalCode) {
+        Expert expert = expertRepository.findExpertByNationalCode(nationalCode);
+        if (expert == null) throw new LogicErrorException("expert not found");
+        return expert;
+    }
+
     public void create(Expert expert) {
         expert.setId(null);
         expert.setRegisterTime(LocalDateTime.now());

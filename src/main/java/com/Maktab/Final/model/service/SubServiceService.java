@@ -33,6 +33,13 @@ public class SubServiceService implements SubServiceServiceInterface {
     }
 
     @Override
+    public SubService findSubServiceByName(String name) {
+        SubService subService = subServiceRepository.findSubServiceByName(name);
+        if (subService == null) throw new LogicErrorException("sub service not found");
+        return subService;
+    }
+
+    @Override
     public List<SubService> findAll() {
         List<SubService> subServices = subServiceRepository.findAll();
         if (subServices == null) throw new LogicErrorException("service list is empty");

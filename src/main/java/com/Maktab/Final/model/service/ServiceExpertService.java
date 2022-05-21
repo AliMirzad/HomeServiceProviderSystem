@@ -44,11 +44,13 @@ public class ServiceExpertService implements ServiceExpertServiceInterface {
         return serviceExpert;
     }
 
-    public void create(ServiceExpert serviceExpert) {
-        if (expertService.findExpertById(serviceExpert.getExpert().getId()) == null)
+    public void create(String nationalCode, String subServiceName) {
+        Expert expert = expertService.findExpertByNationalCode(nationalCode);
+        if (expert == null)
             throw new LogicErrorException("expert expert service-expert not found");
-        if (subServiceServ.findSubServiceById(serviceExpert.getSubService().getId()) == null)
-            throw new LogicErrorException("sub service service-expert not found");
+        SubService subService = subServiceServ.findSubServiceByName(subServiceName);
+        if (subService == null) throw new LogicErrorException("sub service service-expert not found");
+        ServiceExpert serviceExpert = ServiceExpert.builder().id(null).expert(expert).subService(subService).build();
         serviceExpertRepository.save(serviceExpert);
     }
 }

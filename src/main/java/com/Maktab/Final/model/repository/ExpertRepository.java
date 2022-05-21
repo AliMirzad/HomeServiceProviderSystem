@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExpertRepository extends JpaRepository<Expert, Integer> {
     Expert findExpertById(Integer id);
+
+    Expert findExpertByNationalCode(String nationalCode);
 }
