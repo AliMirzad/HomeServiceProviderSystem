@@ -42,6 +42,13 @@ public class CustomerService implements CustomerServiceInterface {
         return customer;
     }
 
+    @Override
+    public Customer findCustomerByNationalCode(String nationalCode) {
+        Customer customer = customerRepository.findCustomerByNationalCode(nationalCode);
+        if (customer == null) throw new LogicErrorException("customer not found");
+        return customer;
+    }
+
     public void create(Customer customer) {
         customer.setId(null);
         customer.setRegisterTime(LocalDateTime.now());

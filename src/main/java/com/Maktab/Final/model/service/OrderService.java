@@ -20,12 +20,12 @@ public class OrderService implements OrderServiceInterface {
     //---------------------------------------------------------needed
     private final OrderRepository orderRepository;
     private final CustomerService customerService;
-    private final SubServiceService subServiceServ;
+    private final SubServiceService subServiceService;
 
-    public OrderService(OrderRepository orderRepository, @Lazy CustomerService customerService, SubServiceService subServiceServ) {
+    public OrderService(OrderRepository orderRepository, @Lazy CustomerService customerService, SubServiceService subServiceService) {
         this.orderRepository = orderRepository;
         this.customerService = customerService;
-        this.subServiceServ = subServiceServ;
+        this.subServiceService = subServiceService;
     }
 
     //---------------------------------------------------------methods
@@ -47,14 +47,20 @@ public class OrderService implements OrderServiceInterface {
 
     @Override
     public List<Order> findOrderBySubServices(SubService subService) {
-        if (subServiceServ.findSubServiceById(subService.getId()) == null)
+        if (subServiceService.findSubServiceById(subService.getId()) == null)
             throw new LogicErrorException("sub service order not found");
         List<Order> orders = orderRepository.findOrderBySubService(subService);
         if (orders == null) throw new LogicErrorException("order list is empty");
         return orders;
     }
 
-    public void create(Order order) {
+    public void create(Order order, String nationalCode, String subServiceName) {
+        Customer customer = customerService.findCustomerByNationalCode(nationalCode);
+        if (customer == null) throw new LogicErrorException("customer order not found");
+        SubService subService = subServiceService.findSubServiceByName(subServiceName);
+        if (subService == null) throw new LogicErrorException("sub service order not found");
+        order.setCustomer(customer);
+        order.setSubService(subService);
         order.setId(null);
         if (order.getAddress() == null || order.getAddress().isEmpty())
             throw new LogicErrorException("address order can't be null/empty");

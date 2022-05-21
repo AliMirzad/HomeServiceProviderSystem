@@ -3,6 +3,8 @@ package com.Maktab.Final.model.service;
 import com.Maktab.Final.model.entity.Expert;
 import com.Maktab.Final.model.entity.Offer;
 import com.Maktab.Final.model.entity.Order;
+import com.Maktab.Final.model.entity.enums.OfferStatus;
+import com.Maktab.Final.model.entity.enums.OrderStatus;
 import com.Maktab.Final.model.repository.OfferRepository;
 import com.Maktab.Final.model.service.serviceInterface.OfferServiceInterface;
 import com.Maktab.Final.model.exception.LogicErrorException;
@@ -10,7 +12,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Status;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -49,16 +53,24 @@ public class OfferService implements OfferServiceInterface {
         return offerRepository.findOfferByOrder(order, Sort.by(Sort.Direction.DESC, sortName));
     }
 
-    public void create(Offer offer) {
+    public void create(Offer offer, String nationalCode, Integer orderId) {
+        Expert expert = expertService.findExpertByNationalCode(nationalCode);
+        if (expert == null) throw new LogicErrorException("expert offer not found");
+        Order order = orderService.findOrderById(orderId);
+        if (order == null) throw new LogicErrorException("order offer not found");
+        offer.setExpert(expert);
+        offer.setOrder(order);
         offer.setId(null);
-        if (orderService.findOrderById(offer.getOrder().getId()) == null) throw new LogicErrorException("order offer not found");
-        if (expertService.findExpertById(offer.getExpert().getId()) == null) throw new LogicErrorException("expert offer not found");
         if (offer.getOfferPrice() < offer.getOrder().getSuggestPrice() || offer.getOfferPrice() == null)
             throw new LogicErrorException("offer price must be more then suggested price");
         if (offer.getEndTime().isBefore(offer.getStartTime()))
             throw new LogicErrorException("offer end time must be after start time");
         if (offer.getStartTime().isBefore(offer.getOrder().getOrderRegisterTime()))
             throw new LogicErrorException("offer start time must be after order register time");
+        offer.setRegistrationDateTime(LocalDateTime.now());
+        offer.setStatus(OfferStatus.pending);
+        order.setStatus(OrderStatus.suggestion);
+        orderService.save(order);
         offerRepository.save(offer);
     }
 
