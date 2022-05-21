@@ -26,4 +26,12 @@ public class Services {
         this.id = id;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Services{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

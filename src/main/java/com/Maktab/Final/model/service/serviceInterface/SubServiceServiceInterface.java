@@ -9,7 +9,7 @@ import java.util.List;
 public interface SubServiceServiceInterface {
     SubService findSubServiceById(Integer id);
 
-    SubServiceDTO findSubServiceDTOById(Integer id);
-
     List<SubService> findSubServiceByServices(Services services);
+
+    List<SubService> findAll();
 }

@@ -4,11 +4,14 @@ import com.Maktab.Final.controller.dto.ServiceDTO;
 import com.Maktab.Final.model.entity.Services;
 import com.Maktab.Final.model.service.ServicesService;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ServiceController {
@@ -17,6 +20,16 @@ public class ServiceController {
 
     public ServiceController(ServicesService servicesService) {
         this.servicesService = servicesService;
+    }
+
+    @GetMapping("/services/get")
+    public List<ServiceDTO> findAll() {
+        List<ServiceDTO> serviceDTOS = new ArrayList<>();
+        for (Services s:
+                servicesService.findAll()) {
+            serviceDTOS.add(modelMapper.map(s, ServiceDTO.class));
+        }
+        return serviceDTOS;
     }
 
     @PostMapping("/services/create")

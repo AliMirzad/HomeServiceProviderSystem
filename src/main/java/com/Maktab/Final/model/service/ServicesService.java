@@ -7,6 +7,7 @@ import com.Maktab.Final.model.exception.LogicErrorException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -23,6 +24,13 @@ public class ServicesService implements ServiceServiceInterface {
     public Services findServicesById(Integer id) {
         Services services = servicesRepository.findServicesById(id);
         if (services == null) throw new LogicErrorException("service not found");
+        return services;
+    }
+
+    @Override
+    public List<Services> findAll() {
+        List<Services> services = servicesRepository.findAll();
+        if (services == null) throw new LogicErrorException("service list is empty");
         return services;
     }
 

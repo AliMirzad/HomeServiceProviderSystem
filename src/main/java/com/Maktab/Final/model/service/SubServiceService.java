@@ -33,8 +33,11 @@ public class SubServiceService implements SubServiceServiceInterface {
     }
 
     @Override
-    public SubServiceDTO findSubServiceDTOById(Integer id) {
-        return null;
+    public List<SubService> findAll() {
+        List<SubService> subServices = subServiceRepository.findAll();
+        if (subServices == null) throw new LogicErrorException("service list is empty");
+        subServices.forEach(System.out::println);
+        return subServices;
     }
 
     @Override

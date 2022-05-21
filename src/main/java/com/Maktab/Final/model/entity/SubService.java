@@ -33,4 +33,15 @@ public class SubService {
         this.description = description;
         this.services = services;
     }
+
+    @Override
+    public String toString() {
+        return "SubService{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", basePrice=" + basePrice +
+                ", description='" + description + '\'' +
+                ", services=" + services +
+                '}';
+    }
 }
