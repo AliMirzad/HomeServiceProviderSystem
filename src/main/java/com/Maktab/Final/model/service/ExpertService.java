@@ -44,6 +44,13 @@ public class ExpertService implements ExpertServiceInterface {
         return serviceOrderQList;
     }
 
+    @Override
+    public List<Expert> findServiceExperts(String serviceName) {
+        List<Expert> experts = expertRepository.findServiceExperts(serviceName);
+        if (experts == null) throw new LogicErrorException("expert list is empty");
+        return experts;
+    }
+
     public void create(Expert expert) {
         expert.setId(null);
         expert.setRegisterTime(LocalDateTime.now());

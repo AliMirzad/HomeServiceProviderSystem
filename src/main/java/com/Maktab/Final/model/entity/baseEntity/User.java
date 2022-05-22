@@ -26,6 +26,14 @@ public class User {
     private LocalDateTime registerTime;
     private byte[] profileImage;
 
+    public User(Integer id, String firstName, String lastName, String email, String nationalCode) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.nationalCode = nationalCode;
+    }
+
     //-----------------------------------------------------------------methods
     @Transient
     public String getDiscriminatorValue() {

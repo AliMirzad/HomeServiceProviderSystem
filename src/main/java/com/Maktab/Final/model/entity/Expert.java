@@ -29,4 +29,8 @@ public class Expert extends User {
         this.status = status;
         this.point = point;
     }
+
+    public Expert(Integer id, String firstName, String lastName, String email, String nationalCode) {
+        super(id, firstName, lastName, email, nationalCode);
+    }
 }
