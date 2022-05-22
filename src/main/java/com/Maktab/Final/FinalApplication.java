@@ -1,12 +1,13 @@
 package com.Maktab.Final;
 
-import com.Maktab.Final.model.service.AdminService;
+import com.Maktab.Final.model.repository.ExpertRepository;
+import com.Maktab.Final.model.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
-
 
 
 @SpringBootApplication

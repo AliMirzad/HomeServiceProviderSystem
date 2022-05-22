@@ -8,6 +8,7 @@ import com.Maktab.Final.model.entity.enums.OrderStatus;
 import com.Maktab.Final.model.repository.OfferRepository;
 import com.Maktab.Final.model.service.serviceInterface.OfferServiceInterface;
 import com.Maktab.Final.model.exception.LogicErrorException;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,10 @@ public class OfferService implements OfferServiceInterface {
     }
 
     @Override
-    public List<Offer> findOfferByOrderWithSort(Order order, String sortName) {
+    public List<Offer> findOfferByOrderWithSort(Integer orderId, String sortName, String nationalCode) {
+        Order order = orderService.findOrderById(orderId);
+        if (order == null) throw new LogicErrorException("order offer sort not found");
+        if (!order.getCustomer().getNationalCode().equals(nationalCode)) throw new LogicErrorException("customer and order not match");
         return offerRepository.findOfferByOrder(order, Sort.by(Sort.Direction.DESC, sortName));
     }
 

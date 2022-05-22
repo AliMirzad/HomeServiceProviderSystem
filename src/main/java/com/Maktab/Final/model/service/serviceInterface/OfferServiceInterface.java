@@ -11,5 +11,5 @@ public interface OfferServiceInterface {
 
     List<Offer> findOfferByExpert(Expert expert);
 
-    List<Offer> findOfferByOrderWithSort(Order order, String sortName);
+    List<Offer> findOfferByOrderWithSort(Integer orderId, String sortName, String nationalCode);
 }
