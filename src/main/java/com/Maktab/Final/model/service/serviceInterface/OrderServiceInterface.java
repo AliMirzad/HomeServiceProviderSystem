@@ -9,7 +9,7 @@ import java.util.List;
 public interface OrderServiceInterface {
     Order findOrderById(Integer id);
 
-    List<Order> findOrderByCustomer(Customer customer);
+    List<Order> findOrderByCustomer(String nationalCode);
 
     List<Order> findOrderBySubServices(SubService subService);
 }

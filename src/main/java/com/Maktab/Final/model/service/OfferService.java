@@ -41,15 +41,6 @@ public class OfferService implements OfferServiceInterface {
     }
 
     @Override
-    public List<Offer> findOfferByExpert(Expert expert) {
-        if (expertService.findExpertById(expert.getId()) == null)
-            throw new LogicErrorException("expert offer not found");
-        List<Offer> offers = offerRepository.findOfferByExpert(expert);
-        if (offers == null) throw new LogicErrorException("offer list is empty");
-        return offers;
-    }
-
-    @Override
     public List<Offer> findOfferByOrderWithSort(Integer orderId, String sortName, String nationalCode) {
         Order order = orderService.findOrderById(orderId);
         if (order == null) throw new LogicErrorException("order offer sort not found");
@@ -76,6 +67,15 @@ public class OfferService implements OfferServiceInterface {
         order.setStatus(OrderStatus.suggestion);
         orderService.save(order);
         offerRepository.save(offer);
+    }
+
+    @Override
+    public List<Offer> findOffersByExpert(String expertNationalCode) {
+        Expert expert = expertService.findExpertByNationalCode(expertNationalCode);
+        if (expert == null) throw new LogicErrorException("expert offer not found");
+        List<Offer> offers = offerRepository.findOfferByExpert(expert);
+        if (offers == null) throw new LogicErrorException("offer list is empty");
+        return offers;
     }
 
     public void save(Offer offer) {

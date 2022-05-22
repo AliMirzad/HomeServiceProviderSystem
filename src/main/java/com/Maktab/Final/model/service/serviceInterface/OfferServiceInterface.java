@@ -9,7 +9,7 @@ import java.util.List;
 public interface OfferServiceInterface {
     Offer findOfferById(Integer id);
 
-    List<Offer> findOfferByExpert(Expert expert);
+    List<Offer> findOffersByExpert(String expertNationalCode);
 
     List<Offer> findOfferByOrderWithSort(Integer orderId, String sortName, String nationalCode);
 }

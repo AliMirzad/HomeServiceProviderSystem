@@ -37,8 +37,9 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public List<Order> findOrderByCustomer(Customer customer) {
-        if (customerService.findCustomerById(customer.getId()) == null)
+    public List<Order> findOrderByCustomer(String nationalCode) {
+        Customer customer = customerService.findCustomerByNationalCode(nationalCode);
+        if (customer == null)
             throw new LogicErrorException("customer order not found");
         List<Order> orders = orderRepository.findOrderByCustomer(customer);
         if (orders == null) throw new LogicErrorException("order list is empty");

@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class ServiceOrder {
+public class ServiceOrderQ {
     String name;
     Integer id;
     String address;
@@ -17,7 +17,7 @@ public class ServiceOrder {
     String lastName;
 
 
-    public ServiceOrder(String name, Integer id, String address, String nationalCode, String lastName) {
+    public ServiceOrderQ(String name, Integer id, String address, String nationalCode, String lastName) {
         this.nationalCode = nationalCode;
         this.name = name;
         this.id = id;

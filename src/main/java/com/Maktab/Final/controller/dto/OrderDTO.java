@@ -18,14 +18,16 @@ public class OrderDTO {
     private String description;
     private String nationalCode;
     private String subServiceName;
+    private String status;
 
     @Builder
-    public OrderDTO(Integer id, Double suggestPrice, String address, String description, String nationalCode, String subServiceName) {
+    public OrderDTO(Integer id, Double suggestPrice, String address, String description, String nationalCode, String subServiceName, String status) {
         this.id = id;
         this.suggestPrice = suggestPrice;
         this.address = address;
         this.description = description;
         this.nationalCode = nationalCode;
         this.subServiceName = subServiceName;
+        this.status = status;
     }
 }

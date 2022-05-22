@@ -2,7 +2,7 @@ package com.Maktab.Final.model.service;
 
 import com.Maktab.Final.model.entity.*;
 import com.Maktab.Final.model.entity.enums.ExpertUserStatus;
-import com.Maktab.Final.model.entity.queryEntity.ServiceOrder;
+import com.Maktab.Final.model.entity.queryEntity.ServiceOrderQ;
 import com.Maktab.Final.model.repository.ExpertRepository;
 import com.Maktab.Final.model.service.serviceInterface.ExpertServiceInterface;
 import com.Maktab.Final.model.exception.LogicErrorException;
@@ -38,10 +38,10 @@ public class ExpertService implements ExpertServiceInterface {
     }
 
     @Override
-    public List<ServiceOrder> findExpertServiceOrders(String nationalCode) {
-        List<ServiceOrder> serviceOrderList = expertRepository.findExpertServiceOrders(nationalCode);
-        if (serviceOrderList == null) throw new LogicErrorException("order list is empty");
-        return serviceOrderList;
+    public List<ServiceOrderQ> findExpertServiceOrders(String nationalCode) {
+        List<ServiceOrderQ> serviceOrderQList = expertRepository.findExpertServiceOrders(nationalCode);
+        if (serviceOrderQList == null) throw new LogicErrorException("order list is empty");
+        return serviceOrderQList;
     }
 
     public void create(Expert expert) {

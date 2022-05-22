@@ -34,8 +34,9 @@ public class WalletService implements WalletServiceInterface {
     }
 
     @Override
-    public Wallet findWalletByExpert(Expert expert) {
-        if (expertService.findExpertById(expert.getId()) == null)
+    public Wallet findWalletByExpert(String expertNationalCode) {
+        Expert expert = expertService.findExpertByNationalCode(expertNationalCode);
+        if (expert == null)
             throw new LogicErrorException("expert wallet not found");
         Wallet wallet = walletRepository.findWalletByExpert(expert);
         if (wallet == null) throw new LogicErrorException("expert wallet not found");
@@ -43,8 +44,9 @@ public class WalletService implements WalletServiceInterface {
     }
 
     @Override
-    public Wallet findWalletByCustomer(Customer customer) {
-        if (customerService.findCustomerById(customer.getId()) == null)
+    public Wallet findWalletByCustomer(String customerNationalCode) {
+        Customer customer = customerService.findCustomerByNationalCode(customerNationalCode);
+        if (customer == null)
             throw new LogicErrorException("customer wallet not found");
         Wallet wallet = walletRepository.findWalletByCustomer(customer);
         if (wallet == null) throw new LogicErrorException("customer wallet not found");

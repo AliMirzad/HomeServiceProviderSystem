@@ -24,14 +24,16 @@ public class OfferDTO {
     private LocalDateTime endTime;
     private String nationalCode;
     private Integer orderId;
+    private String status;
 
     @Builder
-    public OfferDTO(Integer id, Double offerPrice, LocalDateTime startTime, LocalDateTime endTime, String nationalCode, Integer orderId) {
+    public OfferDTO(Integer id, Double offerPrice, LocalDateTime startTime, LocalDateTime endTime, String nationalCode, Integer orderId, String status) {
         this.id = id;
         this.offerPrice = offerPrice;
         this.startTime = startTime;
         this.endTime = endTime;
         this.nationalCode = nationalCode;
         this.orderId = orderId;
+        this.status = status;
     }
 }

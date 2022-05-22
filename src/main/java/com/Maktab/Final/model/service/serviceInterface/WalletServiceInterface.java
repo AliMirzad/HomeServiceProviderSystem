@@ -7,7 +7,7 @@ import com.Maktab.Final.model.entity.Wallet;
 public interface WalletServiceInterface {
     Wallet findWalletById(Integer id);
 
-    Wallet findWalletByExpert(Expert expert);
+    Wallet findWalletByExpert(String expert);
 
-    Wallet findWalletByCustomer(Customer customer);
+    Wallet findWalletByCustomer(String customer);
 }

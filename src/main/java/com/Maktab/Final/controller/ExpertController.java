@@ -1,8 +1,6 @@
 package com.Maktab.Final.controller;
 
-import com.Maktab.Final.controller.dto.ExpertDTO;
-import com.Maktab.Final.model.entity.Expert;
-import com.Maktab.Final.model.entity.queryEntity.ServiceOrder;
+import com.Maktab.Final.model.entity.queryEntity.ServiceOrderQ;
 import com.Maktab.Final.model.service.ExpertService;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +22,7 @@ public class ExpertController {
     }
 
     @GetMapping("/expert/order+list/{nationalCode}")
-    public List<ServiceOrder> getExpertOrders(@PathVariable(name = "nationalCode") String nationalCode) {
+    public List<ServiceOrderQ> getExpertOrders(@PathVariable(name = "nationalCode") String nationalCode) {
         return expertService.findExpertServiceOrders(nationalCode);
     }
 }

@@ -40,9 +40,13 @@ public class CommentService implements CommentServiceInterface {
         return comments;
     }
 
-    public void create(Comment comment) {
-        Expert expert = expertService.findExpertById(comment.getExpert().getId());
+    public void create(Comment comment, Integer customerId, Integer expertId) {
+        Customer customer = customerService.findCustomerById(customerId);
+        if (customer == null) throw new LogicErrorException("comment customer not found");
+        Expert expert = expertService.findExpertById(expertId);
         if (expert == null) throw new LogicErrorException("comment expert not found");
+        comment.setCustomer(customer);
+        comment.setExpert(expert);
         if (comment.getPoint()) expert.setPoint(expert.getPoint() + 1);
         else expert.setPoint(expert.getPoint() - 1);
         if (customerService.findCustomerById(comment.getCustomer().getId()) == null) throw new LogicErrorException("comment customer not found");
