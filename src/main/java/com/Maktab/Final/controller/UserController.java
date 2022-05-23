@@ -9,12 +9,10 @@ import com.Maktab.Final.model.service.CustomerService;
 import com.Maktab.Final.model.service.ExpertService;
 import com.Maktab.Final.model.service.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/")
@@ -31,10 +29,16 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public void register(@RequestBody @Valid UserDTO userDTO) {
+    public void register(@ModelAttribute @RequestBody @Valid UserDTO userDTO) {
         if (userDTO.getType().equals("expert")) {
             if (userDTO.getProfileImage() == null) throw new LogicErrorException("expert user need image");
-            Expert expert = modelMapper.map(userDTO, Expert.class);
+//            Expert expert = modelMapper.map(userDTO, Expert.class);
+            Expert expert = Expert.builder().firstName(userDTO.getFirstName()).lastName(userDTO.getLastName()).email(userDTO.getEmail()).nationalCode(userDTO.getNationalCode()).password(userDTO.getPassword()).build();
+            try {
+                expert.setProfileImage(userDTO.getProfileImage().getBytes());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             expertService.create(expert);
         }
         else if (userDTO.getType().equals("customer")) {

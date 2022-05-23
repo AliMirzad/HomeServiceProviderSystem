@@ -1,6 +1,7 @@
 package com.Maktab.Final.controller.dto;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Min;
@@ -20,12 +21,12 @@ public class UserDTO {
     private String nationalCode;
     @Min(8)
     private String password;
-    private byte[] profileImage;
+    private MultipartFile profileImage;
     @NotNull
     private String type;
 
     @Builder
-    public UserDTO(Integer id, String firstName, String lastName, String email, String nationalCode, String password, byte[] profileImage, String type) {
+    public UserDTO(Integer id, String firstName, String lastName, String email, String nationalCode, String password, MultipartFile profileImage, String type) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
