@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "offers")
 public class Offer {
-    //-----------------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -25,12 +24,11 @@ public class Offer {
     private LocalDateTime endTime;
     @Enumerated(EnumType.STRING)
     private OfferStatus status;
-    //--------------------------------------------------------------relations
     @ManyToOne(fetch = FetchType.EAGER)
     private Expert expert;
     @ManyToOne(fetch = FetchType.EAGER)
     private Order order;
-    //--------------------------------------------------------------toString, cons
+
     @Builder
     public Offer(Integer id, LocalDateTime registrationDateTime, Double offerPrice, LocalDateTime startTime, LocalDateTime endTime, OfferStatus status, Expert expert, Order order) {
         this.id = id;

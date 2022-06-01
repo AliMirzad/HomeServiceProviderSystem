@@ -3,7 +3,6 @@ package com.Maktab.Final.model.exception;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.client.HttpStatusCodeException;
 
 import java.time.ZonedDateTime;
 
@@ -19,5 +18,4 @@ public class LogicExceptions {
         this.httpStatus = httpStatus;
         this.timestamp = timestamp;
     }
-
 }

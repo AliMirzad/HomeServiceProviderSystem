@@ -13,18 +13,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "comments")
 public class Comment {
-    //-----------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String comment;
     private Boolean point;
-    //-------------------------------------------------relations
     @ManyToOne
     private Customer customer;
     @ManyToOne
     private Expert expert;
-    //-------------------------------------------------toString, cons
+
     @Builder
     public Comment(Integer id, String comment, Boolean point, Customer customer, Expert expert) {
         this.id = id;
@@ -32,5 +30,16 @@ public class Comment {
         this.point = point;
         this.customer = customer;
         this.expert = expert;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", comment='" + comment + '\'' +
+                ", point=" + point +
+                ", customer=" + customer +
+                ", expert=" + expert +
+                '}';
     }
 }

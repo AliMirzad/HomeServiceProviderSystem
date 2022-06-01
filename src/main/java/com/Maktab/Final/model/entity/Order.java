@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "orders")
 public class Order {
-    //--------------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -25,13 +24,11 @@ public class Order {
     private String description;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    //----------------------------------------------------relations
     @ManyToOne
     private Customer customer;
     @ManyToOne
     private SubService subService;
 
-    //------------------------------------------------------toString, cons
     @Builder
     public Order(Integer id, LocalDateTime orderRegisterTime, Double suggestPrice, String address, String description, OrderStatus status, Customer customer, SubService subService) {
         this.id = id;
@@ -42,5 +39,19 @@ public class Order {
         this.status = status;
         this.customer = customer;
         this.subService = subService;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderRegisterTime=" + orderRegisterTime +
+                ", suggestPrice=" + suggestPrice +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", customer=" + customer +
+                ", subService=" + subService +
+                '}';
     }
 }

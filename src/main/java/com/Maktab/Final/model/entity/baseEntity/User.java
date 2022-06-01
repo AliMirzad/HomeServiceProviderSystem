@@ -4,17 +4,16 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+import java.util.Arrays;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
 @Entity
 @Table(name = "users")
 public class User {
-    //-----------------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -34,9 +33,24 @@ public class User {
         this.nationalCode = nationalCode;
     }
 
-    //-----------------------------------------------------------------methods
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", nationalCode='" + nationalCode + '\'' +
+                ", password='" + password + '\'' +
+                ", registerTime=" + registerTime +
+                ", profileImage=" + Arrays.toString(profileImage) +
+                '}';
+    }
+
     @Transient
     public String getDiscriminatorValue() {
         return this.getClass().getAnnotation(DiscriminatorValue.class).value();
     }
+
+
 }

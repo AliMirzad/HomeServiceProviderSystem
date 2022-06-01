@@ -22,13 +22,11 @@ public class Transactions {
     private Double remain;
     private Double amount;
     private Integer walletId;
-    //---------------------------------------relations
     @ManyToOne
     private Customer customer;
     @ManyToOne
     private Expert expert;
 
-    //---------------------------------------toString, cons
     @Builder
     public Transactions(Integer id, TransactionModel model, Double remain, Double amount, Integer walletId, Customer customer, Expert expert) {
         this.id = id;
@@ -38,5 +36,18 @@ public class Transactions {
         this.walletId = walletId;
         this.customer = customer;
         this.expert = expert;
+    }
+
+    @Override
+    public String toString() {
+        return "Transactions{" +
+                "id=" + id +
+                ", model=" + model +
+                ", remain=" + remain +
+                ", amount=" + amount +
+                ", walletId=" + walletId +
+                ", customer=" + customer +
+                ", expert=" + expert +
+                '}';
     }
 }

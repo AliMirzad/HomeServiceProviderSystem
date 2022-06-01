@@ -1,13 +1,11 @@
 package com.Maktab.Final.model.entity;
 
 import com.Maktab.Final.model.entity.baseEntity.User;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @NoArgsConstructor
 @Getter
@@ -22,6 +20,16 @@ public class Admin extends User {
 
     @Override
     public String toString() {
-        return "Admin{" + "id=" + getId() + " ,name=" + getFirstName() + " " + getLastName() + " ,nationalCode=" + getNationalCode() + " ,password=" + getPassword() + '}';
+        return "Admin{" +
+                "discriminatorValue='" + getDiscriminatorValue() + '\'' +
+                ", id=" + getId() +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", nationalCode='" + getNationalCode() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", registerTime=" + getRegisterTime() +
+                ", profileImage=" + Arrays.toString(getProfileImage()) +
+                '}';
     }
 }

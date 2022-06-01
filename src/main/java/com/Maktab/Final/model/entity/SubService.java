@@ -13,18 +13,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sub_services")
 public class SubService {
-    //--------------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private Double basePrice;
     private String description;
-    //----------------------------------------------------relations
     @ManyToOne
     private Services services;
 
-    //------------------------------------------------------toString, cons
     @Builder
     public SubService(Integer id, String name, Double basePrice, String description, Services services) {
         this.id = id;

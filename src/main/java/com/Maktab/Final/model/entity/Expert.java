@@ -9,20 +9,18 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("expert")
+@DiscriminatorValue("experts")
 public class Expert extends User {
-    //---------------------------------------------------fields
     @Enumerated(EnumType.STRING)
     private ExpertUserStatus status;
     private Integer point;
 
-    //---------------------------------------------------relations
-    //----------------------------------------------toString, cons
     @Builder
     public Expert(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, ExpertUserStatus status, Integer point) {
         super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
@@ -32,5 +30,22 @@ public class Expert extends User {
 
     public Expert(Integer id, String firstName, String lastName, String email, String nationalCode) {
         super(id, firstName, lastName, email, nationalCode);
+    }
+
+    @Override
+    public String toString() {
+        return "Expert{" +
+                "status=" + status +
+                ", point=" + point +
+                ", discriminatorValue='" + getDiscriminatorValue() + '\'' +
+                ", id=" + getId() +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", nationalCode='" + getNationalCode() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", registerTime=" + getRegisterTime() +
+                ", profileImage=" + Arrays.toString(getProfileImage()) +
+                '}';
     }
 }

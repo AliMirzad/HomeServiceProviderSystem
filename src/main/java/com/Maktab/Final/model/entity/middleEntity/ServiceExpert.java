@@ -13,23 +13,29 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "Expert_Service")
+@Table(name = "Services_Experts")
 public class ServiceExpert {
-    //-----------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    //------------------------------------------------------relations
     @ManyToOne
     private Expert expert;
     @ManyToOne
     private SubService subService;
 
-    //-------------------------------------------------------toString, cons
     @Builder
     public ServiceExpert(Integer id, Expert expert, SubService subService) {
         this.id = id;
         this.expert = expert;
         this.subService = subService;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceExpert{" +
+                "id=" + id +
+                ", expert=" + expert +
+                ", subService=" + subService +
+                '}';
     }
 }

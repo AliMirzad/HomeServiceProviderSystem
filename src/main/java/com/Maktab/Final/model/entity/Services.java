@@ -13,14 +13,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "services")
 public class Services {
-    //--------------------------------------------------------fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true)
     private String name;
-    //----------------------------------------------------relations
-    //------------------------------------------------------toString, cons
+
     @Builder
     public Services(Integer id, String name) {
         this.id = id;
