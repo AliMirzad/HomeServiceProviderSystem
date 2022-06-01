@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Service
 @Transactional
 public class CustomerService implements CustomerServiceInterface {
-    //--------------------------------------------------------------needed
     private final CustomerRepository customerRepository;
     private final OrderService orderService;
     private final CommentService commentService;
@@ -34,7 +33,6 @@ public class CustomerService implements CustomerServiceInterface {
         this.offerService = offerService;
     }
 
-    //--------------------------------------------------------------methods
     @Override
     public Customer findCustomerById(Integer id) {
         Customer customer = customerRepository.findCustomerById(id);

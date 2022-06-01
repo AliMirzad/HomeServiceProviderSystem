@@ -12,7 +12,6 @@ import java.util.List;
 
 @Service
 public class CommentService implements CommentServiceInterface {
-    //--------------------------------------------------------------needed
     private final CommentRepository commentRepository;
     private final ExpertService expertService;
     private final CustomerService customerService;
@@ -23,7 +22,6 @@ public class CommentService implements CommentServiceInterface {
         this.customerService = customerService;
     }
 
-    //--------------------------------------------------------------methods
     @Override
     public List<Comment> findCommentByExpert(Expert expert) {
         if (expertService.findExpertById(expert.getId()) == null) throw new LogicErrorException("comment expert not found");

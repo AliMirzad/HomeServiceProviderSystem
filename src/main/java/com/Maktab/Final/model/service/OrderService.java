@@ -17,7 +17,6 @@ import java.util.List;
 @Service
 @Transactional
 public class OrderService implements OrderServiceInterface {
-    //---------------------------------------------------------needed
     private final OrderRepository orderRepository;
     private final CustomerService customerService;
     private final SubServiceService subServiceService;
@@ -28,7 +27,6 @@ public class OrderService implements OrderServiceInterface {
         this.subServiceService = subServiceService;
     }
 
-    //---------------------------------------------------------methods
     @Override
     public Order findOrderById(Integer id) {
         Order order = orderRepository.findOrderById(id);

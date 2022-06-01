@@ -14,14 +14,12 @@ import java.time.LocalDateTime;
 @Service
 @Transactional
 public class AdminService implements AdminServiceInterface {
-    //---------------------------------------------------needed items
     private final AdminRepository adminRepository;
 
     public AdminService(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
     }
 
-    //--------------------------------------------------------methods
     @Override
     public Admin findAdminById(Integer id) {
         Admin admin = adminRepository.findAdminById(id);

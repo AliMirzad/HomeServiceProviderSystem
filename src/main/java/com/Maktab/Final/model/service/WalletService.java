@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class WalletService implements WalletServiceInterface {
-    //--------------------------------------------------------------needed
     private final WalletRepository walletRepository;
     private final ExpertService expertService;
     private final CustomerService customerService;
@@ -25,7 +24,6 @@ public class WalletService implements WalletServiceInterface {
         this.customerService = customerService;
     }
 
-    //--------------------------------------------------------------methods
     @Override
     public Wallet findWalletById(Integer id) {
         Wallet wallet = walletRepository.findWalletById(id);

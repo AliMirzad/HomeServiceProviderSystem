@@ -21,7 +21,6 @@ import java.util.List;
 @Service
 @Transactional
 public class OfferService implements OfferServiceInterface {
-    //---------------------------------------------------------needed
     private final OfferRepository offerRepository;
     private final OrderService orderService;
     private final ExpertService expertService;
@@ -32,7 +31,6 @@ public class OfferService implements OfferServiceInterface {
         this.expertService = expertService;
     }
 
-    //---------------------------------------------------------methods
     @Override
     public Offer findOfferById(Integer id) {
         Offer offer = offerRepository.findOfferById(id);

@@ -12,14 +12,12 @@ import java.util.List;
 @Service
 @Transactional
 public class ServicesService implements ServiceServiceInterface {
-    //---------------------------------------------------------needed
     private final ServicesRepository servicesRepository;
 
     public ServicesService(ServicesRepository servicesRepository) {
         this.servicesRepository = servicesRepository;
     }
 
-    // ---------------------------------------------------------methods
     @Override
     public Services findServicesById(Integer id) {
         Services services = servicesRepository.findServicesById(id);

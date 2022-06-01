@@ -6,7 +6,9 @@ import com.Maktab.Final.model.entity.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WalletRepository extends JpaRepository<Wallet, Integer> {
-    public Wallet findWalletById(Integer id);
-    public Wallet findWalletByExpert(Expert expert);
-    public Wallet findWalletByCustomer(Customer customer);
+    Wallet findWalletById(Integer id);
+
+    Wallet findWalletByExpert(Expert expert);
+
+    Wallet findWalletByCustomer(Customer customer);
 }

@@ -22,7 +22,6 @@ public class ExpertService implements ExpertServiceInterface {
         this.expertRepository = expertRepository;
     }
 
-    //---------------------------------------------------------methods
     @Override
     public Expert findExpertById(Integer id) {
         Expert expert = expertRepository.findExpertById(id);

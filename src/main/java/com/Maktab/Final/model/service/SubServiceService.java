@@ -15,7 +15,6 @@ import java.util.List;
 @Service
 @Transactional
 public class SubServiceService implements SubServiceServiceInterface {
-    //--------------------------------------------------------------needed
     private final SubServiceRepository subServiceRepository;
     private final ServicesService servicesService;
 
@@ -24,7 +23,6 @@ public class SubServiceService implements SubServiceServiceInterface {
         this.servicesService = servicesService;
     }
 
-    //--------------------------------------------------------------methods
     @Override
     public SubService findSubServiceById(Integer id) {
         SubService subService = subServiceRepository.findSubServiceById(id);

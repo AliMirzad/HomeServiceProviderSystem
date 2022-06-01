@@ -240,3 +240,6 @@ java.lang.NumberFormatException: For input string: "{id}"
 	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
 
 2022-06-01 19:01:58.804  INFO 14400 --- [http-nio-7070-exec-6] c.M.F.m.e.GlobalExceptionHandler         : admin not found
+2022-06-01 20:02:42.748  INFO 14400 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-01 20:02:42.756  INFO 14400 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-06-01 20:02:42.762  INFO 14400 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

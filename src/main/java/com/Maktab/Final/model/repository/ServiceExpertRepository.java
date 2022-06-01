@@ -6,6 +6,7 @@ import com.Maktab.Final.model.entity.middleEntity.ServiceExpert;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ServiceExpertRepository extends JpaRepository<ServiceExpert, Integer> {
-    public ServiceExpert findServiceExpertByExpert(Expert expert);
-    public ServiceExpert findServiceExpertBySubService(SubService subService);
+    ServiceExpert findServiceExpertByExpert(Expert expert);
+
+    ServiceExpert findServiceExpertBySubService(SubService subService);
 }

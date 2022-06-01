@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
     List<Comment> findCommentByExpert(Expert expert);
+
     List<Comment> findCommentByCustomer(Customer customer);
 }

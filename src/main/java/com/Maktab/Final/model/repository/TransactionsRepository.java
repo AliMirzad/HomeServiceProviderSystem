@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TransactionsRepository extends JpaRepository<Transactions, Integer> {
-    public List<Transactions> findTransactionsByWalletId(Integer id);
-    public List<Transactions> findTransactionsByCustomer(Customer customer);
-    public List<Transactions> findTransactionsByExpert(Expert expert);
+    List<Transactions> findTransactionsByWalletId(Integer id);
+
+    List<Transactions> findTransactionsByCustomer(Customer customer);
+
+    List<Transactions> findTransactionsByExpert(Expert expert);
 }

@@ -14,7 +14,6 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class ServiceExpertService implements ServiceExpertServiceInterface {
-    //--------------------------------------------------------------needed
     private final ServiceExpertRepository serviceExpertRepository;
     private final ExpertService expertService;
     private final SubServiceService subServiceServ;
@@ -25,7 +24,6 @@ public class ServiceExpertService implements ServiceExpertServiceInterface {
         this.subServiceServ = subServiceServ;
     }
 
-    //--------------------------------------------------------------methods
     @Override
     public ServiceExpert findServiceExpertByExpert(Expert expert) {
         if (expertService.findExpertById(expert.getId()) == null)
