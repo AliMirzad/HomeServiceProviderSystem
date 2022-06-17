@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -45,8 +46,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public List<User> gridSearch(Integer userId, String email, String firstName, String lastName, String type) {
-        Specification<User> specification = userGridSearch.gridSearch(userId, email, firstName, lastName, type);
+    public List<User> gridSearch(Integer userId, String email, String firstName, String lastName/*, String registerDate, Integer orderCount, Integer offerCount*/) {
+        Specification<User> specification = userGridSearch.gridSearch(userId, email, firstName, lastName/*, LocalDateTime.parse(registerDate), orderCount, offerCount*/);
         return userRepository.findAll(specification);
     }
 }

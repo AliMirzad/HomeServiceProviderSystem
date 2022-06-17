@@ -1,6 +1,7 @@
 package com.Maktab.Final.model.entity;
 
 import com.Maktab.Final.model.entity.baseEntity.User;
+import com.Maktab.Final.model.entity.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,15 +14,16 @@ import java.util.Arrays;
 @Entity
 @DiscriminatorValue("admin")
 public class Admin extends User {
+
     @Builder
-    public Admin(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage) {
-        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
+    public Admin(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Role role) {
+        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage, role);
     }
 
     @Override
     public String toString() {
         return "Admin{" +
-                "discriminatorValue='" + getDiscriminatorValue() + '\'' +
+                "discriminatorValue='" + getRole() + '\'' +
                 ", id=" + getId() +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +

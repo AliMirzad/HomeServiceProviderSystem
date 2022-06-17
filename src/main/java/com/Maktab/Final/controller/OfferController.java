@@ -27,7 +27,9 @@ public class OfferController {
     }
 
     @GetMapping("/offer/sort/{orderId}+{sortName}+{nationalCode}")
-    public List<OfferDTO> findOfferByOrderWithSort(@PathVariable(name = "orderId") Integer orderId, @PathVariable(name = "sortName") String sortName, @PathVariable(name = "nationalCode") String nationalCode) {
+    public List<OfferDTO> findOfferByOrderWithSort(@PathVariable(name = "orderId") Integer orderId,
+                                                   @PathVariable(name = "sortName") String sortName,
+                                                   @PathVariable(name = "nationalCode") String nationalCode) {
         List<Offer> findWithSort = offerService.findOfferByOrderWithSort(orderId, sortName, nationalCode);
         List<OfferDTO> offerDTOS = new ArrayList<>();
         for (Offer o :

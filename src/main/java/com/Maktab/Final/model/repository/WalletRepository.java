@@ -11,4 +11,5 @@ public interface WalletRepository extends JpaRepository<Wallet, Integer> {
     Wallet findWalletByExpert(Expert expert);
 
     Wallet findWalletByCustomer(Customer customer);
+
 }

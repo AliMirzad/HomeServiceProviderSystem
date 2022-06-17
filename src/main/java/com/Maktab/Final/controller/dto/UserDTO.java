@@ -11,18 +11,19 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class UserDTO {
     private Integer id;
     private String firstName;
     private String lastName;
-    @NotNull
+
     private String email;
-    @NotNull
+
     private String nationalCode;
-    @Min(8)
+
     private String password;
     private MultipartFile profileImage;
-    @NotNull
+
     private String type;
 
     @Builder

@@ -17,10 +17,10 @@ public class ExpertDTO {
     private Integer id;
     private String firstName;
     private String lastName;
-    @NotNull
+
     private String email;
     private String nationalCode;
-    @Min(8)
+
     private String password;
     private byte[] profileImage;
 

@@ -45,4 +45,9 @@ public class ExpertController {
         }
         return expertServiceDTOS;
     }
+
+    @GetMapping("/expert/finish+job/{offerId}")
+    public void finishJob(@PathVariable(name = "offerId")Integer offerId) {
+        expertService.finishJob(offerId);
+    }
 }

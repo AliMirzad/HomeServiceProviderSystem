@@ -2,6 +2,7 @@ package com.Maktab.Final.model.entity;
 
 import com.Maktab.Final.model.entity.baseEntity.User;
 import com.Maktab.Final.model.entity.enums.CustomerUserStatus;
+import com.Maktab.Final.model.entity.enums.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,8 @@ public class Customer extends User {
     private CustomerUserStatus status;
 
     @Builder
-    public Customer(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, CustomerUserStatus status) {
-        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
+    public Customer(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Role role, CustomerUserStatus status) {
+        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage, role);
         this.status = status;
     }
 
@@ -30,7 +31,7 @@ public class Customer extends User {
     public String toString() {
         return "Customer{" +
                 "status=" + status +
-                ", discriminatorValue='" + getDiscriminatorValue() + '\'' +
+                ", discriminatorValue='" + getRole() + '\'' +
                 ", id=" + getId() +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +

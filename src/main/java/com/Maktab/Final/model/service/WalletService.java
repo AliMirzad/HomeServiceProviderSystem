@@ -57,4 +57,8 @@ public class WalletService implements WalletServiceInterface {
             throw new LogicErrorException("wallet owner must be customer or expert");
         walletRepository.save(wallet);
     }
+
+    public void save(Wallet wallet) {
+        walletRepository.save(wallet);
+    }
 }

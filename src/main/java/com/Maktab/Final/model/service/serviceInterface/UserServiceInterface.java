@@ -5,11 +5,13 @@ import com.Maktab.Final.model.entity.baseEntity.User;
 import java.util.List;
 
 public interface UserServiceInterface {
-    User login(String email, String password);
+	User login(String email, String password);
 
-    void changePassword(Integer userId, String oldPassword, String newPassword);
+	void changePassword(Integer userId, String oldPassword, String newPassword);
 
-    List<User> gridSearch(Integer userId, String email, String firstName, String lastName, String type);
+//	List<User> gridSearch(Integer userId, String email, String firstName, String lastName, String registerDate, Integer orderCount, Integer offerCount);
 
-    User findById(Integer id);
+	List<User> gridSearch(Integer userId, String email, String firstName, String lastName);
+
+	User findById(Integer id);
 }

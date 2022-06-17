@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"
+    ></script>
+    <script src="js/CreateUser.js"></script>
+    <link rel="stylesheet" href="css/RegisterStyle.css">
+    <title>RegisterForm</title>
+</head>
+<body>
+<form method="post">
+    <h1>Sign Up</h1>
+    <fieldset>
+        <legend>Your info</legend>
+        <label for="first-name">Name:</label>
+        <input type="text" id="first-name" name="user_name">
+
+        <label for="last-name">Surname:</label>
+        <input type="text" id="last-name" name="user_email">
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="user_password">
+
+        <label for="national-code">NationalCode:</label>
+        <input type="text" id="national-code" name="user_password">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password">
+        <input type="file" id="file" name="file"/>
+
+        <input class="user-radio" type="radio" id="expert_radio" value="expert" name="user_model"><label for="expert_radio" class="light">Expert</label><br>
+        <input class="user-radio" type="radio" id="customer_radio" value="customer" name="user_model"><label for="customer_radio" class="light">Customer</label>
+    </fieldset>
+    <button type="submit" id="saveNewUser">Sign Up</button>
+    <script src="js/RegisterFormJS.js"></script>
+</form>
+</body>
+</html>

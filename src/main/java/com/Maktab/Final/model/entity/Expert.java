@@ -2,6 +2,7 @@ package com.Maktab.Final.model.entity;
 
 import com.Maktab.Final.model.entity.baseEntity.User;
 import com.Maktab.Final.model.entity.enums.ExpertUserStatus;
+import com.Maktab.Final.model.entity.enums.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +23,8 @@ public class Expert extends User {
     private Integer point;
 
     @Builder
-    public Expert(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, ExpertUserStatus status, Integer point) {
-        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage);
+    public Expert(Integer id, String firstName, String lastName, String email, String nationalCode, String password, LocalDateTime registerTime, byte[] profileImage, Role role, ExpertUserStatus status, Integer point) {
+        super(id, firstName, lastName, email, nationalCode, password, registerTime, profileImage, role);
         this.status = status;
         this.point = point;
     }
@@ -37,7 +38,7 @@ public class Expert extends User {
         return "Expert{" +
                 "status=" + status +
                 ", point=" + point +
-                ", discriminatorValue='" + getDiscriminatorValue() + '\'' +
+                ", discriminatorValue='" + getRole() + '\'' +
                 ", id=" + getId() +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +

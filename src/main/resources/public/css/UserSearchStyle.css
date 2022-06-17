@@ -1,0 +1,13 @@
+#main-div{
+    padding: 10px;
+    margin: auto;
+    width: 90vw;
+    height: auto;
+    background-color: black;
+}
+form{
+    padding: 10px;
+    margin: auto;
+    width: 90vw;
+    color: red;
+}

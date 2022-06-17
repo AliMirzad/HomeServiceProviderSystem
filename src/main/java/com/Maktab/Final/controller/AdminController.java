@@ -1,8 +1,6 @@
 package com.Maktab.Final.controller;
 
 
-import com.Maktab.Final.controller.dto.AdminDTO;
-import com.Maktab.Final.model.entity.Admin;
 import com.Maktab.Final.model.service.AdminService;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;

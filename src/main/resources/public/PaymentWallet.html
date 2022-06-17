@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/paymentStyle.css">
+    <script src="https://cdn.tailwindcss.com/3.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/capchaStyle.css">
+    <title>PaymentWallet</title>
+</head>
+<body>
+<div class="flex justify-center items-center min-h-screen">
+    <div class="h-auto w-80 bg-white p-3 rounded-lg">
+        <p class="text-xl font-semibold">Payment Details</p>
+        <div class="input_text mt-6 relative"><input type="text"
+                                                     class="h-12 pl-7 outline-none px-2 focus:border-blue-900 transition-all w-full border-b "
+                                                     placeholder="Ali Mirzad"/> <span
+                class="absolute left-0 text-sm -top-4">Cardholder Name</span> <i
+                class="absolute left-2 top-4 text-gray-400 fa fa-user"></i></div>
+        <input id="offer-id" type="text"
+               class="h-12 pl-7 outline-none px-2 focus:border-blue-900 transition-all w-full border-b "
+               placeholder="Offer ID">
+        <span class="absolute left-0 text-sm -top-4">Order ID</span>
+        <i class="absolute left-2 top-4 text-gray-400 fa fa-lock"></i>
+        <div class="wrapper">
+            <div class="captcha-area">
+                <div class="captcha-img">
+                    <img src="captcha-bg.png" alt="Captch Background">
+                    <span class="captcha"></span>
+                </div>
+                <button class="reload-btn"><i class="fas fa-redo-alt"></i></button>
+            </div>
+            <form action="#" class="input-area">
+                <input type="text" placeholder="Enter captcha" maxlength="6" spellcheck="false" required>
+                <button class="check-btn btn btn-success">PAY</button>
+            </form>
+            <div class="status-text"></div>
+        </div>
+    </div>
+</div>
+<script src="js/paymentJS.js"></script>
+<script src="js/captchaWalletJS.js"></script>
+</body>
+</html>

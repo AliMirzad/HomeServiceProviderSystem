@@ -1,7 +1,7 @@
 package com.Maktab.Final.model.service;
 
-import com.Maktab.Final.controller.dto.AdminDTO;
 import com.Maktab.Final.model.entity.Admin;
+import com.Maktab.Final.model.entity.enums.Role;
 import com.Maktab.Final.model.exception.LogicErrorException;
 import com.Maktab.Final.model.repository.AdminRepository;
 import com.Maktab.Final.model.service.serviceInterface.AdminServiceInterface;
@@ -14,22 +14,24 @@ import java.time.LocalDateTime;
 @Service
 @Transactional
 public class AdminService implements AdminServiceInterface {
-    private final AdminRepository adminRepository;
 
-    public AdminService(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
-    }
+	private final AdminRepository adminRepository;
 
-    @Override
-    public Admin findAdminById(Integer id) {
-        Admin admin = adminRepository.findAdminById(id);
-        if (admin == null) throw new LogicErrorException("admin not found");
-        admin.setPassword(null);
-        return admin;
-    }
+	public AdminService(AdminRepository adminRepository) {
+		this.adminRepository = adminRepository;
+	}
 
-    public void create(Admin admin) {
-        admin.setRegisterTime(LocalDateTime.now());
-        adminRepository.save(admin);
-    }
+	@Override
+	public Admin findAdminById(Integer id) {
+		Admin admin = adminRepository.findAdminById(id);
+		if (admin == null) throw new LogicErrorException("admin not found");
+		admin.setPassword(null);
+		return admin;
+	}
+
+	public void create(Admin admin) {
+		admin.setRegisterTime(LocalDateTime.now());
+		admin.setRole(Role.ROLE_ADMIN);
+		adminRepository.save(admin);
+	}
 }
